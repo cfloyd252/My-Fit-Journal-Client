@@ -1,0 +1,16 @@
+#log-nav {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 15%;
+}
+
+#log-nav button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  width: 25%;
+}
