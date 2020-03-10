@@ -4,7 +4,7 @@ import DateContainer from '../DateContainer/DateContainer'
 
 export class LogView extends Component {
   render() {
-    const sortedArrayByDate = dataArray.sort(dataObject => {
+    const sortedArrayByDate = this.props.dataArray.sort(dataObject => {
       return new
     })
 
