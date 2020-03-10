@@ -8,8 +8,9 @@ export class LogView extends Component {
       
     })
 
+    let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
     const dateContainers = sortedArrayByDate.map(dataObject => {
-      return <DateContainer date={new Date(dataObject.datetime).toLocaleDateString()} />
+      return <DateContainer date={new Date(dataObject.datetime).toLocaleDateString('en-US', options)} />
     })
 
     return (
