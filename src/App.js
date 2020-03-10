@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom';
 import TabNav from './Components/TabNav/TabNav'
 import Overview from './Components/Overview/Overview'
 import LogView from './Components/LogView/LogView'
-import dummyStore from '../dummy-store'
+import dummyStore from './dummy-store'
 import './App.css'
 
 class App extends Component {

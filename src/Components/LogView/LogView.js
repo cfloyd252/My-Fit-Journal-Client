@@ -5,11 +5,11 @@ import DateContainer from '../DateContainer/DateContainer'
 export class LogView extends Component {
   render() {
     const sortedArrayByDate = this.props.dataArray.sort(dataObject => {
-      return new
+      
     })
 
     const dateContainers = sortedArrayByDate.map(dataObject => {
-      return <DateContainer date={dataObject.datetime} />
+      return <DateContainer date={new Date(dataObject.datetime).toLocaleDateString()} />
     })
 
     return (

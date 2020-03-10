@@ -5,7 +5,7 @@ export class DateContainer extends Component {
   render() {
     return (
       <div className="date-container">
-        <p>Wednesday, 2/26/2020</p>
+        <p>{this.props.date}</p>
         <div className="data-container">
           <div className="weight-data">
             <p>213 lbs</p>
