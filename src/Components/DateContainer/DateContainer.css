@@ -1,18 +1,11 @@
-.weight-data {
-  border: 1px solid black;
-  padding: 5px;
-  text-align: center;
-  margin-right: 5px;
+.date-container {
+  align-self: flex-start;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .data-container {
   display: flex;
   flex-direction: row-reverse;
   justify-content: flex-end;
-}
-
-.date-container {
-  align-self: flex-start;
-  padding-left: 15px;
-  padding-right: 15px;
 }
