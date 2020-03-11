@@ -14,7 +14,7 @@ export class LandingPage extends Component {
           are new, feel free to register and you will be guided through a 
           quick tutorial on how to get started. 
         </p>
-        <form>
+        <form id='login-form'>
           <label for="username">Username:</label>
           <input type="text" name="username" id="username" />
           <label for="password">Password:</label>
