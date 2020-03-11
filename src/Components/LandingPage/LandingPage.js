@@ -5,7 +5,7 @@ import './LandingPage.css'
 export class LandingPage extends Component {
   render() {
     return (
-      <div>
+      <section id='landing-page'>
         <h1>My Fit Journal</h1>
         <h2>Welcome,</h2>
         <p>
@@ -22,7 +22,7 @@ export class LandingPage extends Component {
           <button type="submit">Login</button>
           <Link to='/register' id='register-link'>Register</Link>
         </form>
-      </div>
+      </section>
     )
   }
 }
