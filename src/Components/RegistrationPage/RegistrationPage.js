@@ -5,7 +5,7 @@ export class RegistrationPage extends Component {
     return (
       <section id='registration-page'>
         <h1>Registration</h1>
-        <form>
+        <form id='registration-form'>
           <label for="create-username">Create Username:</label>
           <input type="text" name="create-username" id="create-username" />
           <label for="create-password">Create Password:</label>
