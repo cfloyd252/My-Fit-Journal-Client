@@ -28,14 +28,14 @@ export default {
       "user_name": "Test User 1",
       "quanity": 8,
       "unitOfMeasure": "fl oz",
-      "datetime": "2020-02-04T11:23:54Z",
+      "datetime": "2020-02-15T15:45:26Z",
     },
     {
       "id": 2,
       "user_name": "Test User 1",
       "quanity": 16,
       "unitOfMeasure": "fl oz",
-      "datetime": "2020-02-04T11:23:54Z",
+      "datetime": "2020-02-10T09:30:54Z",
     },
     {
       "id": 3,
