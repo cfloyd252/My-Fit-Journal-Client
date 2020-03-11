@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './RegistrationPage.css'
 
 export class RegistrationPage extends Component {
   render() {
