@@ -20,7 +20,7 @@ export class LandingPage extends Component {
           <label for="password">Password:</label>
           <input type="password" name="password" id="password" />
           <button type="submit">Login</button>
-          <Link to='/register'>Register</Link>
+          <Link to='/register' id='register-link'>Register</Link>
         </form>
       </div>
     )
