@@ -1,0 +1,25 @@
+div {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 25%;
+}
+
+p {
+  padding: 20px;
+  text-align: center;
+  font-size: 12px;
+}
+
+Link {
+  align-self: center;
+}
