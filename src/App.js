@@ -20,17 +20,17 @@ class App extends Component {
   render() {
     return (
       <main className='App'>
-        <Route exact path={'/'} component={Overview} />
-        <Route exact path={'/weight-log'} render={(routerProps) => {
+        <Route exact path={'/journal'} component={Overview} />
+        <Route exact path={'/journal/weight'} render={(routerProps) => {
           return <LogView title='Weight Log' dataArray={this.state.weightData} {...routerProps}/>
           }} />
-        <Route exact path={'/water-log'} render={(routerProps) => {
+        <Route exact path={'/journal/water'} render={(routerProps) => {
           return <LogView title='Water Log' dataArray={this.state.waterData} {...routerProps}/>
         }} />
-        <Route exact path={'/activity-log'} render={(routerProps) => {
+        <Route exact path={'/journal/activity'} render={(routerProps) => {
           return <LogView title='Activty Log' dataArray={this.state.activityData} {...routerProps}/>
         }} />
-        <Route path={'/'} component={TabNav} />
+        <Route path={'/journal'} component={TabNav} />
       </main>
     )
   }

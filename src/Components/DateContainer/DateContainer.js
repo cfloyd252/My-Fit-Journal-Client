@@ -10,7 +10,6 @@ export class DateContainer extends Component {
         <div className="data-container">
           <LogData />
           <LogData />
-          <LogData />
         </div>
       </div>
     )
