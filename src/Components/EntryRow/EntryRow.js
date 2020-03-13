@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './EntryRow.css'
-import LogData from '../LogData/EntryLog'
+import EntryLog from '../EntryLog/EntryLog'
 
 export class DateContainer extends Component {
   render() {
@@ -9,15 +9,15 @@ export class DateContainer extends Component {
       return this.props.date === new Date(dataObject.log_time).toLocaleDateString('en-US', options)
     })
 
-    const logData = filteredArrayByDate.map(dataObject => {
-      return <LogData />
+    const entryLogs = filteredArrayByDate.map(dataObject => {
+      return <EntryLog />
     })
 
     return (
       <div className="date-container">
         <p>{this.props.date}</p>
         <div className="data-container">
-          {logData}
+          {entryLogs}
         </div>
       </div>
     )
