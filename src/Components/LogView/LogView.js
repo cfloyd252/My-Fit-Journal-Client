@@ -12,7 +12,7 @@ export class LogView extends Component {
     const dateContainers = sortedArrayByDate.map(dataObject => {
       return (
         <DateContainer 
-          date={new Date(dataObject.datetime).toLocaleDateString('en-US', options)}
+          date={new Date(dataObject.log_time).toLocaleDateString('en-US', options)}
           dataArray={this.props.dataArray}
         />
       )
