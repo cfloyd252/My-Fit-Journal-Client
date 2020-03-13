@@ -6,6 +6,8 @@ export class EntryLog extends Component {
     return (
       <div className="log-data">
       <p>{this.props.entryInfo.quanity} {this.props.entryInfo.unitOfMeasure}</p>
+      <p>{this.props.entryInfo.activity_name}</p>
+      <p>{this.props.entryInfo.duration}</p>
     </div>
     )
   }
