@@ -21,7 +21,7 @@ export class LogView extends Component {
     return (
       <section className='Log-View'>
         <h1>{this.props.title}</h1>
-          <button className="add-data">Add {this.props.title}</button>
+          <button className="add-data">Add {this.props.title} Entry</button>
         {entryRows}
       </section>
     )
