@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import './DateContainer.css'
-import LogData from '../LogData/LogData'
+import './EntryRow.css'
+import LogData from '../LogData/EntryLog'
 
 export class DateContainer extends Component {
   render() {

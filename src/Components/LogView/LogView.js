@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './LogView.css'
-import DateContainer from '../DateContainer/DateContainer'
+import EntryRow from '../EntryRow/EntryRow'
 
 export class LogView extends Component {
   render() {
@@ -9,9 +9,9 @@ export class LogView extends Component {
     })
 
     let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
-    const dateContainers = sortedArrayByDate.map(dataObject => {
+    const entryRows = sortedArrayByDate.map(dataObject => {
       return (
-        <DateContainer 
+        <EntryRow 
           date={new Date(dataObject.log_time).toLocaleDateString('en-US', options)}
           dataArray={this.props.dataArray}
         />
@@ -22,7 +22,7 @@ export class LogView extends Component {
       <section className='Log-View'>
         <h1>{this.props.title}</h1>
         <button className="add-data">Add Weight</button>
-        {dateContainers}
+        {entryRows}
       </section>
     )
   }

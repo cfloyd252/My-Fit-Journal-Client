@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import './LogData.css'
+import './EntryLog.css'
 
-export class LogData extends Component {
+export class EntryLog extends Component {
   render() {
     return (
       <div className="log-data">
@@ -11,4 +11,4 @@ export class LogData extends Component {
   }
 }
 
-export default LogData
+export default EntryLog
