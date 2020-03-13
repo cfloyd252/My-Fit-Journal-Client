@@ -10,7 +10,7 @@ export class DateContainer extends Component {
     })
 
     const entryLogs = filteredArrayByDate.map(dataObject => {
-      return <EntryLog />
+      return <EntryLog entryInfo={dataObject}/>
     })
 
     return (

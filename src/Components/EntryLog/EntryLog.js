@@ -5,7 +5,7 @@ export class EntryLog extends Component {
   render() {
     return (
       <div className="log-data">
-      <p>213 lbs</p>
+      <p>{this.props.entryInfo.quanity} {this.props.entryInfo.unitOfMeasure}</p>
     </div>
     )
   }
