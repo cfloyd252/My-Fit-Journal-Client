@@ -4,12 +4,8 @@ import EntryRow from '../EntryRow/EntryRow'
 
 export class LogView extends Component {
   render() {
-    const sortedArrayByDate = this.props.dataArray.sort(dataObject => {
-      
-    })
-
     let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
-    const entryRows = sortedArrayByDate.map(dataObject => {
+    const entryRows = this.props.dataArray.map(dataObject => {
       return (
         <EntryRow 
           date={new Date(dataObject.log_time).toLocaleDateString('en-US', options)}
