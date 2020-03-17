@@ -1,8 +1,26 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import './LandingPage.css'
+import TokenService from '../../services/token-service'
+import AuthApiService from '../../services/auth-api-service'
 
 export class LandingPage extends Component {
+  handleSubmitJwtAuth = ev => {
+    ev.preventDefault()
+    const { user_name, password } = ev.target
+
+    AuthApiService.postLogin({
+      user_name: user_name.value,
+      password: password.value,
+    })
+      .then(res => {
+        user_name.value = ''
+        password.value= ''
+        TokenService.saveAuthToken(res.authToken)
+      })
+
+      this.props.history.push('/journal')
+  }
   render() {
     return (
       <section id='landing-page'>
@@ -14,9 +32,9 @@ export class LandingPage extends Component {
           are new, feel free to register and you will be guided through a 
           quick tutorial on how to get started. 
         </p>
-        <form id='login-form'>
-          <label for="username">Username:</label>
-          <input type="text" name="username" id="username" />
+        <form id='login-form' onSubmit={this.handleSubmitJwtAuth}>
+          <label for="user_name">Username:</label>
+          <input type="text" name="user_name" id="user_name" />
           <label for="password">Password:</label>
           <input type="password" name="password" id="password" />
           <button type="submit">Login</button>
