@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './Overview.css'
+import EntryLog from '../EntryLog/EntryLog'
 
 export class Overview extends Component {
   render() {
@@ -8,17 +9,11 @@ export class Overview extends Component {
         <h1 className="username">Username</h1>
         <div id="overview-data">
           <p>Current Weight</p>
-          <div className="data">
-            <p>215 lbs</p>
-          </div>
+          <EntryLog entryInfo/>
           <p>Latest Activity</p>
-          <div className="data">
-            <p>Actvity Data</p>
-          </div>
+          <EntryLog entryInfo/>
           <p>Water Intake</p>
-          <div className="data">
-            <p>Water Data</p>
-          </div>
+          <EntryLog entryInfo/>
         </div>
       </section>
     )
