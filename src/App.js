@@ -5,6 +5,7 @@ import Overview from './Components/Overview/Overview'
 import LogView from './Components/LogView/LogView'
 import LandingPage from './Components/LandingPage/LandingPage'
 import RegistrationPage from './Components/RegistrationPage/RegistrationPage'
+import WaterLogEntry from './Components/LogEntry/WaterLogEntry'
 import './App.css'
 import EntriesApiService from './services/entries-api-service';
 
@@ -49,6 +50,7 @@ class App extends Component {
           return <LogView title='Activty Log' dataArray={this.state.activityEntries} {...routerProps}/>
         }} />
         <Route path={'/journal'} component={TabNav} />
+        <Route exact path={'/journal/water/add'} component={WaterLogEntry} />
       </main>
     )
   }
