@@ -6,7 +6,7 @@ export class EntryLog extends Component {
     if (this.props.entryInfo.activity_name === undefined) {
       return (
         <div className="log-data">
-          <p>{this.props.entryInfo.quanity} {this.props.entryInfo.unitOfMeasure}</p>
+          <p>{this.props.entryInfo.quanity} {this.props.entryInfo.unit_of_measurement}</p>
         </div>
       )
     }

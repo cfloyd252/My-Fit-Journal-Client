@@ -5,8 +5,6 @@ import Overview from './Components/Overview/Overview'
 import LogView from './Components/LogView/LogView'
 import LandingPage from './Components/LandingPage/LandingPage'
 import RegistrationPage from './Components/RegistrationPage/RegistrationPage'
-import EntryServiceApi from './services/entries-api-service'
-import dummyStore from './dummy-store'
 import './App.css'
 import EntriesApiService from './services/entries-api-service';
 
@@ -19,7 +17,7 @@ class App extends Component {
 
   componentDidMount() {
     EntriesApiService.getWeightEntries()
-      .then(wieghtEntries => this.setState({ wieghtEntries }));
+      .then(weightEntries => this.setState({ weightEntries }));
     EntriesApiService.getWaterEntries()
       .then(waterEntries => this.setState({ waterEntries }))
     EntriesApiService.getActivityEntries()

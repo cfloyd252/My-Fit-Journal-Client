@@ -1,5 +1,5 @@
 export default {
-  "weightData": [
+  "weightEntries": [
     {
       "id": 1,
       "user_name": "Test User 1",
@@ -22,7 +22,7 @@ export default {
       "log_time": "2020-02-04T11:23:54Z",
     },
   ],
-  "waterData": [
+  "waterEntries": [
     {
       "id": 1,
       "user_name": "Test User 1",
@@ -45,7 +45,7 @@ export default {
       "log_time": "2020-02-04T11:23:54Z",
     },
   ],
-  "activityData": [
+  "activityEntries": [
     {
       "id": 3,
       "user_name": "Test User 1",
@@ -55,7 +55,7 @@ export default {
       "calories_burned": 20,
     },
   ],
-  "userData": [
+  "users": [
     {
       "id": 1,
       "user_name": "Test User 1",

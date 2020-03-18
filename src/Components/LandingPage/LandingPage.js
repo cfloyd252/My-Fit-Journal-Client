@@ -33,9 +33,9 @@ export class LandingPage extends Component {
           quick tutorial on how to get started. 
         </p>
         <form id='login-form' onSubmit={this.handleSubmitJwtAuth}>
-          <label for="user_name">Username:</label>
+          <label htmlFor="user_name">Username:</label>
           <input type="text" name="user_name" id="user_name" />
-          <label for="password">Password:</label>
+          <label htmlFor="password">Password:</label>
           <input type="password" name="password" id="password" />
           <button type="submit">Login</button>
           <Link to='/register' id='register-link'>Register</Link>
