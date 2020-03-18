@@ -10,6 +10,7 @@ export class WaterLogEntry extends Component {
         <input name='unitOfMeasurement' type='text' required />
         <label for="logtime">Date and time:</label>
         <input type="datetime-local" name="logtime"></input>
+        <button type="submit">Submit</button>
       </form>
     )
   }
