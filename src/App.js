@@ -7,6 +7,7 @@ import LandingPage from './Components/LandingPage/LandingPage'
 import RegistrationPage from './Components/RegistrationPage/RegistrationPage'
 import WaterLogEntry from './Components/LogEntry/WaterLogEntry'
 import WeightLogEntry from './Components/LogEntry/WeightLogEntry'
+import ActivityLogEntry from './Components/LogEntry/ActivityLogEntry'
 import './App.css'
 import EntriesApiService from './services/entries-api-service';
 
@@ -53,6 +54,7 @@ class App extends Component {
         <Route path={'/journal'} component={TabNav} />
         <Route exact path={'/journal/water/add'} component={WaterLogEntry} />
         <Route exact path={'/journal/weight/add'} component={WeightLogEntry} />
+        <Route exact path={'/journal/activity/add'} component={ActivityLogEntry} />
       </main>
     )
   }
