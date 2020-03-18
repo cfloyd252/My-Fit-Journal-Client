@@ -25,11 +25,20 @@ class App extends Component {
   }
 
   render() {
+    let currentWeightEntry = this.state.weightEntries[0]
+    let currentWaterEntry = this.state.waterEntries[0]
+    let currentActivityEntry = this.state.activityEntries[0]
+
+    console.log(currentActivityEntry)
+
     return (
       <main className='App'>
         <Route exact path={'/'} component={LandingPage} />
         <Route exact path={'/register'} component={RegistrationPage} />
-        <Route exact path={'/journal'} component={Overview} />
+        <Route exact path={'/journal'} render={(routerProps) => {
+          return <Overview currentWeightEntry={currentWeightEntry} currentActivityEntry={currentActivityEntry} 
+          currentWaterEntry={currentWaterEntry} {...routerProps} />
+        }} />
         <Route exact path={'/journal/weight'} render={(routerProps) => {
           return <LogView title='Weight Log' dataArray={this.state.weightEntries} {...routerProps}/>
           }} />

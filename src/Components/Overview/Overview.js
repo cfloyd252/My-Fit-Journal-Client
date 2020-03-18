@@ -9,11 +9,11 @@ export class Overview extends Component {
         <h1 className="username">Username</h1>
         <div id="overview-data">
           <p>Current Weight</p>
-          <EntryLog entryInfo/>
+          <EntryLog entryInfo={this.props.currentWeightEntry}/>
           <p>Latest Activity</p>
-          <EntryLog entryInfo/>
+          <EntryLog entryInfo={this.props.currentActivityEntry}/>
           <p>Water Intake</p>
-          <EntryLog entryInfo/>
+          <EntryLog entryInfo={this.props.currentWaterEntry}/>
         </div>
       </section>
     )
