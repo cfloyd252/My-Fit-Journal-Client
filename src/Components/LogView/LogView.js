@@ -3,6 +3,10 @@ import './LogView.css'
 import EntryRow from '../EntryRow/EntryRow'
 
 export class LogView extends Component {
+  handleAddButton = () => {
+    this.props.history.push(`/journal/${this.props.title.toLowerCase()}/add`)
+  }
+
   render() {
     let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
     const entryRows = this.props.dataArray.map(dataObject => {
@@ -16,8 +20,8 @@ export class LogView extends Component {
 
     return (
       <section className='Log-View'>
-        <h1>{this.props.title}</h1>
-          <button className="add-data">Add</button>
+        <h1>{this.props.title} Log</h1>
+          <button className="add-data" onClick={this.handleAddButton}>Add</button>
         {entryRows}
       </section>
     )

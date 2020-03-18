@@ -43,13 +43,13 @@ class App extends Component {
           currentWaterEntry={currentWaterEntry} {...routerProps} />
         }} />
         <Route exact path={'/journal/weight'} render={(routerProps) => {
-          return <LogView title='Weight Log' dataArray={this.state.weightEntries} {...routerProps}/>
+          return <LogView title='Weight' dataArray={this.state.weightEntries} {...routerProps}/>
           }} />
         <Route exact path={'/journal/water'} render={(routerProps) => {
-          return <LogView title='Water Log' dataArray={this.state.waterEntries} {...routerProps}/>
+          return <LogView title='Water' dataArray={this.state.waterEntries} {...routerProps}/>
         }} />
         <Route exact path={'/journal/activity'} render={(routerProps) => {
-          return <LogView title='Activty Log' dataArray={this.state.activityEntries} {...routerProps}/>
+          return <LogView title='Activity' dataArray={this.state.activityEntries} {...routerProps}/>
         }} />
         <Route path={'/journal'} component={TabNav} />
         <Route exact path={'/journal/water/add'} component={WaterLogEntry} />
