@@ -3,7 +3,8 @@ import React, { Component } from 'react'
 export class WaterLogEntry extends Component {
   render() {
     return (
-      <form className='entry_form' id='water_form'>
+      <section>
+        <form className='entry_form' id='water_form'>
         <label htmlFor='quanity'>Quanity</label>
         <input name='quanity' type='number' min='1' required />
         <label htmlFor='unitOfMeasurement'>Unit of Measurement</label>
@@ -12,6 +13,7 @@ export class WaterLogEntry extends Component {
         <input type="datetime-local" name="logtime"></input>
         <button type="submit">Submit</button>
       </form>
+      </section>
     )
   }
 }

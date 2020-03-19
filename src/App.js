@@ -5,9 +5,9 @@ import Overview from './Components/Overview/Overview'
 import LogView from './Components/LogView/LogView'
 import LandingPage from './Components/LandingPage/LandingPage'
 import RegistrationPage from './Components/RegistrationPage/RegistrationPage'
-import WaterLogEntry from './Components/LogEntry/WaterLogEntry'
-import WeightLogEntry from './Components/LogEntry/WeightLogEntry'
-import ActivityLogEntry from './Components/LogEntry/ActivityLogEntry'
+import WaterLogEntry from './Components/LogEntryForm/WaterLogEntry'
+import WeightLogEntry from './Components/LogEntryForm/WeightLogEntry'
+import ActivityLogEntry from './Components/LogEntryForm/ActivityLogEntry'
 import './App.css'
 import EntriesApiService from './services/entries-api-service';
 

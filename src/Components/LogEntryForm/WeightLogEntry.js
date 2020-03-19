@@ -10,7 +10,8 @@ export class WeightLogEntry extends Component {
   }
   render() {
     return (
-      <form className='entry_form' id='weight_form'>
+      <section className='add_from' id='weight_from'>
+        <form className='entry_form' id='weight_form'>
         <label htmlFor='quanity'>Quanity</label>
         <input name='quanity' type='number' min='1' required />
         <label htmlFor='unit_of_measurement'>Unit of Measurement</label>
@@ -19,6 +20,7 @@ export class WeightLogEntry extends Component {
         <input type="datetime-local" name="log_time" required></input>
         <button type="submit">Submit</button>
       </form>
+      </section>
     )
   }
 }
