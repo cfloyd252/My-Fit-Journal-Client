@@ -2,9 +2,9 @@
   display: flex;
   position: fixed;
   bottom: 0;
-  left: 0;
-  right: 0;
-  height: 15%;
+  align-items: center;
+  justify-content: space-around;
+  background-color: gray;
 }
 
 #log-nav .tablinks {
@@ -12,9 +12,6 @@
   color: black;
   text-decoration: none;
   background-color: gray;
-  border: none;
-  outline: none;
   cursor: pointer;
   padding: 14px 16px;
-  width: 25%;
 }
