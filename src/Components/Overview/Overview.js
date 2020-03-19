@@ -6,7 +6,7 @@ export class Overview extends Component {
   render() {
     return (
       <section id="overview">
-        <h1 className="username">Username</h1>
+        {/* <h1 className="username">Username</h1> */}
         <div id="overview-data">
           <p>Current Weight</p>
           <EntryLog entryInfo={this.props.currentWeightEntry}/>
