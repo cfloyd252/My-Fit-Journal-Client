@@ -1,11 +1,3 @@
-#overview {
-  height: 85%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 #overview-data{
   display: flex;
   flex-direction: column;
