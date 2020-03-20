@@ -14,7 +14,7 @@ export class ActivityLogEntry extends Component {
           <input type="datetime-local" name="end_time" required></input>
           <label htmlFor='calories'>Calories burned</label>
           <input name='calories' type='number' min='1'></input>
-          <button type="submit">Submit</button>
+          <button className ='submit_data' type="submit">Submit</button>
         </form>
       </section>
     )
