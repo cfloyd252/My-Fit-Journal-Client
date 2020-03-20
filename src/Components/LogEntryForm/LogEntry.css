@@ -1,0 +1,15 @@
+.entry_form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid black;
+  padding: 10px;
+}
+
+.entry_section {
+  justify-content: center;
+}
+
+.submit_data {
+  margin-top: 10px;
+}
