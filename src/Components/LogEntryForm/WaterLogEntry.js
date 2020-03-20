@@ -19,7 +19,11 @@ export class WaterLogEntry extends Component {
         <label htmlFor='quanity'>Quanity</label>
         <input name='quanity' type='number' min='1' required />
         <label htmlFor='unit_of_measurement'>Unit of Measurement</label>
-        <input name='unit_of_measurement' type='text' required />
+        <select name='unit_of_measurement'>
+          <option value='ml'>ml</option>
+          <option value='cup'>cup</option>
+          <option value='fl oz'>fl oz</option>
+        </select>
         <label htmlFor="log_time">Date and time</label>
         <input type="datetime-local" name="log_time"></input>
         <button className ='submit_data' type="submit">Submit</button>
