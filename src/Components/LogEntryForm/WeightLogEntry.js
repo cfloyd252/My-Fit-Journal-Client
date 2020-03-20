@@ -6,7 +6,9 @@ export class WeightLogEntry extends Component {
     ev.preventDefault()
     const { quanity, unit_of_measurement, log_time} = ev.target
     const logTimeValue = `${log_time.value}:00Z`
-    console.log(logTimeValue)
+    
+    EntriesApiService.postWeightEntry(quanity.value, unit_of_measurement.value, logTimeValue, 1)
+
     this.props.history.push('/journal/weight')
   }
   render() {

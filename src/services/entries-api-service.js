@@ -67,9 +67,9 @@ const EntriesApiService = {
       },
       body: JSON.stringify({
         quanity,
-        unit_of_meaurement: unitOfMeaurement,
+        unit_of_measurement: unitOfMeaurement,
         log_time: logTime,
-        user_id:userId,
+        user_id: userId,
       }),
     })
       .then(res =>
