@@ -9,6 +9,9 @@ export class LogView extends Component {
 
   render() {
     let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
+
+   //TODO: Partition the array so we get only one EntryRow per unique date
+    
     const entryRows = this.props.dataArray.map(dataObject => {
       return (
         <EntryRow 
