@@ -8,6 +8,7 @@ import RegistrationPage from './Components/RegistrationPage/RegistrationPage'
 import WaterLogEntry from './Components/LogEntryForm/WaterLogEntry'
 import WeightLogEntry from './Components/LogEntryForm/WeightLogEntry'
 import ActivityLogEntry from './Components/LogEntryForm/ActivityLogEntry'
+import { BrowserRouter } from 'react-router-dom'
 import './App.css'
 import EntriesApiService from './services/entries-api-service';
 
@@ -36,25 +37,27 @@ class App extends Component {
 
     return (
       <main className='App'>
-        <Route exact path={'/'} component={LandingPage} />
-        <Route exact path={'/register'} component={RegistrationPage} />
-        <Route exact path={'/journal'} render={(routerProps) => {
-          return <Overview currentWeightEntry={currentWeightEntry} currentActivityEntry={currentActivityEntry} 
-          currentWaterEntry={currentWaterEntry} {...routerProps} />
-        }} />
-        <Route exact path={'/journal/weight'} render={(routerProps) => {
-          return <LogView title='Weight' dataArray={this.state.weightEntries} {...routerProps}/>
+        <BrowserRouter>
+          <Route exact path={'/'} component={LandingPage} />
+          <Route exact path={'/register'} component={RegistrationPage} />
+          <Route exact path={'/journal'} render={(routerProps) => {
+            return <Overview currentWeightEntry={currentWeightEntry} currentActivityEntry={currentActivityEntry} 
+            currentWaterEntry={currentWaterEntry} {...routerProps} />
           }} />
-        <Route exact path={'/journal/water'} render={(routerProps) => {
-          return <LogView title='Water' dataArray={this.state.waterEntries} {...routerProps}/>
-        }} />
-        <Route exact path={'/journal/activity'} render={(routerProps) => {
-          return <LogView title='Activity' dataArray={this.state.activityEntries} {...routerProps}/>
-        }} />
-        <Route path={'/journal'} component={TabNav} />
-        <Route exact path={'/journal/water/add'} component={WaterLogEntry} />
-        <Route exact path={'/journal/weight/add'} component={WeightLogEntry} />
-        <Route exact path={'/journal/activity/add'} component={ActivityLogEntry} />
+          <Route exact path={'/journal/weight'} render={(routerProps) => {
+            return <LogView title='Weight' dataArray={this.state.weightEntries} {...routerProps}/>
+            }} />
+          <Route exact path={'/journal/water'} render={(routerProps) => {
+            return <LogView title='Water' dataArray={this.state.waterEntries} {...routerProps}/>
+          }} />
+          <Route exact path={'/journal/activity'} render={(routerProps) => {
+            return <LogView title='Activity' dataArray={this.state.activityEntries} {...routerProps}/>
+          }} />
+          <Route path={'/journal'} component={TabNav} />
+          <Route exact path={'/journal/water/add'} component={WaterLogEntry} />
+          <Route exact path={'/journal/weight/add'} component={WeightLogEntry} />
+          <Route exact path={'/journal/activity/add'} component={ActivityLogEntry} />
+        </BrowserRouter>
       </main>
     )
   }
