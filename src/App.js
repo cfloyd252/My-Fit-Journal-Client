@@ -33,8 +33,6 @@ class App extends Component {
     let currentWaterEntry = this.state.waterEntries[0]
     let currentActivityEntry = this.state.activityEntries[0]
 
-    console.log(currentActivityEntry)
-
     return (
       <main className='App'>
         <BrowserRouter>

@@ -4,19 +4,20 @@ import EntriesApiService from '../../services/entries-api-service'
 export class WeightLogEntry extends Component {
   handleSubmit = ev => {
     ev.preventDefault()
-    const { quanity, unit_of_measurement, log_time}= ev.target
-
-    EntriesApiService.postWeightEntry()
+    const { quanity, unit_of_measurement, log_time} = ev.target
+    const logTimeValue = `${log_time.value}:00Z`
+    console.log(logTimeValue)
+    this.props.history.push('/journal/weight')
   }
   render() {
     return (
-      <section className='entry_section'>
+      <section className='entry_section' onSubmit={this.handleSubmit}>
         <form className='entry_form' id='weight_form'>
         <label htmlFor='quanity'>Quanity</label>
         <input name='quanity' type='number' min='1' required />
         <label htmlFor='unit_of_measurement'>Unit of Measurement</label>
         <input name='unit_of_measurement' type='text' required />
-        <label for="log_time">Date and time</label>
+        <label htmlFor="log_time">Date and time</label>
         <input type="datetime-local" name="log_time" required></input>
         <button className ='submit_data' type="submit">Submit</button>
       </form>
