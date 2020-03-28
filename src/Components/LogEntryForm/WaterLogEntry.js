@@ -1,20 +1,7 @@
 import React, { Component } from 'react'
 import './LogEntry.css'
-import EntriesApiService from '../../services/entries-api-service'
 
 export class WaterLogEntry extends Component {
-  handleWaterSubmit = ev => {
-    ev.preventDefault()
-    const { quanity, unit_of_measurement, start_time} = ev.target
-    
-    EntriesApiService.postWaterEntry(quanity.value, unit_of_measurement.value, start_time.value, 1)
-
-    EntriesApiService.getWaterEntries()
-      .then(waterEntries => this.setState({ waterEntries }))
-
-    this.props.history.push('/journal/water')
-  }
-
   render() {
     return (
       <section className='entry_section' onSubmit={this.props.handleSubmit}>

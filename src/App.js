@@ -45,6 +45,40 @@ class App extends Component {
     this.props.history.push('/journal/water')
   }
 
+  handleWeightSubmit = ev => {
+    ev.preventDefault()
+    const { quanity, unit_of_measurement, start_time} = ev.target
+    
+    EntriesApiService.postWeightEntry(quanity.value, unit_of_measurement.value, start_time.value, 1)
+      .then(weightEntry => {
+        this.setState({ weightEntries: [...this.state.weightEntries, weightEntry]})
+        return EntriesApiService.getWeightEntries()
+      })
+      .then(weightEntries => this.setState({ weightEntries }))
+
+    EntriesApiService.getWeightEntries()
+      .then(weightEntries => this.setState({ weightEntries }))
+
+    this.props.history.push('/journal/weight')
+  }
+
+  handleWaterSubmit = ev => {
+    ev.preventDefault()
+    const { quanity, unit_of_measurement, start_time} = ev.target
+    
+    EntriesApiService.postWaterEntry(quanity.value, unit_of_measurement.value, start_time.value, 1)
+      .then(waterEntry => {
+        this.setState({ waterEntries: [...this.state.waterEntries, waterEntry]})
+        return EntriesApiService.getWaterEntries()
+      })
+      .then(waterEntries => this.setState({ waterEntries }))
+
+    EntriesApiService.getWaterEntries()
+      .then(waterEntries => this.setState({ waterEntries }))
+
+    this.props.history.push('/journal/water')
+  }
+
   render() {
     let currentWeightEntry = this.state.weightEntries[0]
     let currentWaterEntry = this.state.waterEntries[0]
@@ -58,20 +92,22 @@ class App extends Component {
             return <Overview currentWeightEntry={currentWeightEntry} currentActivityEntry={currentActivityEntry} 
             currentWaterEntry={currentWaterEntry} {...routerProps} />
           }} />
-          {/* <Route exact path={'/journal/weight'} render={(routerProps) => {
+          <Route exact path={'/journal/weight'} render={(routerProps) => {
             return <LogView title='Weight' dataArray={this.state.weightEntries} {...routerProps}/>
-            }} /> */}
+            }} />
           <Route exact path={'/journal/water'} render={(routerProps) => {
             return <LogView title='Water' dataArray={this.state.waterEntries} {...routerProps}/>
           }} />
-          {/* <Route exact path={'/journal/activity'} render={(routerProps) => {
+          <Route exact path={'/journal/activity'} render={(routerProps) => {
             return <LogView title='Activity' dataArray={this.state.activityEntries} {...routerProps}/>
-          }} /> */}
+          }} />
           <Route path={'/journal'} component={TabNav} />
           <Route exact path={'/journal/water/add'} render={(routerProps) => {
             return <WaterLogEntry handleSubmit={this.handleWaterSubmit} {...routerProps} />
           }} />
-          <Route exact path={'/journal/weight/add'} component={WeightLogEntry} />
+          <Route exact path={'/journal/weight/add'} render={(routerProps) => {
+            return <WeightLogEntry handleSubmit={this.handleWeightSubmit} {...routerProps} />
+          }} />
           <Route exact path={'/journal/activity/add'} component={ActivityLogEntry} />
       </main>
     )
