@@ -15,7 +15,7 @@ const EntriesApiService = {
       )
   },
   getActivityEntries() {
-    return fetch(`${config.API_ENDPOINT}/entries/activities`, {
+    return fetch(`${config.API_ENDPOINT}/entries/activity`, {
       headers: {
         'authorization': `bearer ${TokenService.getAuthToken()}`,
       },
@@ -38,7 +38,7 @@ const EntriesApiService = {
           : res.json()
       )
   },
-  postWaterEntry(quanity, unitOfMeaurement, logTime, userId) {
+  postWaterEntry(quanity, unitOfMeaurement, startTime, userId) {
     return fetch(`${config.API_ENDPOINT}/entries/water`, {
       method: 'POST',
       headers: {
@@ -48,8 +48,8 @@ const EntriesApiService = {
       body: JSON.stringify({
         quanity,
         unit_of_measurement: unitOfMeaurement,
-        log_time: logTime,
-        user_id:userId,
+        start_time: startTime,
+        // user_id:userId,
       }),
     })
       .then(res =>
@@ -58,7 +58,7 @@ const EntriesApiService = {
           : res.json()
       )
   },
-  postWeightEntry(quanity, unitOfMeaurement, logTime, userId) {
+  postWeightEntry(quanity, unitOfMeaurement, startTime, userId) {
     return fetch(`${config.API_ENDPOINT}/entries/weight`, {
       method: 'POST',
       headers: {
@@ -68,7 +68,7 @@ const EntriesApiService = {
       body: JSON.stringify({
         quanity,
         unit_of_measurement: unitOfMeaurement,
-        log_time: logTime,
+        start_time: startTime,
         user_id: userId,
       }),
     })

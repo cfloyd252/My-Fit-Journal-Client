@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './LogView.css'
 import EntryRow from '../EntryRow/EntryRow'
 
-export class LogView extends Component {
+class LogView extends Component {
   handleAddButton = () => {
     this.props.history.push(`/journal/${this.props.title.toLowerCase()}/add`)
   }
@@ -15,7 +15,7 @@ export class LogView extends Component {
     const entryRows = this.props.dataArray.map(dataObject => {
       return (
         <EntryRow 
-          date={new Date(dataObject.log_time).toLocaleDateString('en-US', options)}
+          date={new Date(dataObject.start_time).toLocaleDateString('en-US', options)}
           dataArray={this.props.dataArray}
         />
       )

@@ -3,18 +3,21 @@ import './LogEntry.css'
 import EntriesApiService from '../../services/entries-api-service'
 
 export class WaterLogEntry extends Component {
-  handleSubmit = ev => {
+  handleWaterSubmit = ev => {
     ev.preventDefault()
-    const { quanity, unit_of_measurement, log_time} = ev.target
-    const logTimeValue = `${log_time.value}:00Z`
+    const { quanity, unit_of_measurement, start_time} = ev.target
     
-    EntriesApiService.postWaterEntry(quanity.value, unit_of_measurement.value, logTimeValue, 1)
+    EntriesApiService.postWaterEntry(quanity.value, unit_of_measurement.value, start_time.value, 1)
+
+    EntriesApiService.getWaterEntries()
+      .then(waterEntries => this.setState({ waterEntries }))
 
     this.props.history.push('/journal/water')
   }
+
   render() {
     return (
-      <section className='entry_section' onSubmit={this.handleSubmit}>
+      <section className='entry_section' onSubmit={this.props.handleSubmit}>
         <form className='entry_form' id='water_form'>
         <label htmlFor='quanity'>Quanity</label>
         <input name='quanity' type='number' min='1' required />
@@ -24,8 +27,8 @@ export class WaterLogEntry extends Component {
           <option value='cup'>cup</option>
           <option value='fl oz'>fl oz</option>
         </select>
-        <label htmlFor="log_time">Date and time</label>
-        <input type="datetime-local" name="log_time"></input>
+        <label htmlFor="start_time">Date and time</label>
+        <input type="datetime-local" name="start_time"></input>
         <button className ='submit_data' type="submit">Submit</button>
       </form>
       </section>

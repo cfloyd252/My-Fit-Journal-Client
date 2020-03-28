@@ -3,6 +3,9 @@ import './EntryLog.css'
 
 export class EntryLog extends Component {
   render() {
+    if (!this.props.entryInfo) {
+      return null
+    }
     if (this.props.entryInfo.activity_name === undefined) {
       return (
         <div className="log-data">
