@@ -78,19 +78,19 @@ const EntriesApiService = {
           : res.json()
       )
   },
-  postActivityEntry(activityName, startTime, endTime, caloriesBurned = null, userId) {
-    return fetch(`${config.API_ENDPOINT}/entries/activities`, {
+  postActivityEntry(logTitle, startTime, endTime, calories = null , userId) {
+    return fetch(`${config.API_ENDPOINT}/entries/activity`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
         'authorization': `bearer ${TokenService.getAuthToken()}`,
       },
       body: JSON.stringify({
-       activity_name: activityName,
-       start_time: startTime,
-       end_time: endTime,
-       calories_burned: caloriesBurned,
-       user_id: userId,
+        log_title: logTitle,
+        start_time: startTime,
+        end_time: endTime,
+        calories,
+        user_id: userId,
       }),
     })
       .then(res =>

@@ -39,9 +39,6 @@ class App extends Component {
       })
       .then(waterEntries => this.setState({ waterEntries }))
 
-    EntriesApiService.getWaterEntries()
-      .then(waterEntries => this.setState({ waterEntries }))
-
     this.props.history.push('/journal/water')
   }
 
@@ -56,27 +53,21 @@ class App extends Component {
       })
       .then(weightEntries => this.setState({ weightEntries }))
 
-    EntriesApiService.getWeightEntries()
-      .then(weightEntries => this.setState({ weightEntries }))
-
     this.props.history.push('/journal/weight')
   }
 
-  handleWaterSubmit = ev => {
+  handleActivitySubmit = ev => {
     ev.preventDefault()
-    const { quanity, unit_of_measurement, start_time} = ev.target
+    const { name_of_activity, start_time, end_time, calories} = ev.target
     
-    EntriesApiService.postWaterEntry(quanity.value, unit_of_measurement.value, start_time.value, 1)
-      .then(waterEntry => {
-        this.setState({ waterEntries: [...this.state.waterEntries, waterEntry]})
-        return EntriesApiService.getWaterEntries()
+    EntriesApiService.postActivityEntry(name_of_activity.value, start_time.value, end_time.value, calories.value)
+      .then(activityEntry => {
+        this.setState({ activityEntries: [...this.state.activityEntries, activityEntry]})
+        return EntriesApiService.getActivityEntries()
       })
-      .then(waterEntries => this.setState({ waterEntries }))
+      .then(activityEntries => this.setState({ activityEntries }))
 
-    EntriesApiService.getWaterEntries()
-      .then(waterEntries => this.setState({ waterEntries }))
-
-    this.props.history.push('/journal/water')
+    this.props.history.push('/journal/activity')
   }
 
   render() {
@@ -108,7 +99,9 @@ class App extends Component {
           <Route exact path={'/journal/weight/add'} render={(routerProps) => {
             return <WeightLogEntry handleSubmit={this.handleWeightSubmit} {...routerProps} />
           }} />
-          <Route exact path={'/journal/activity/add'} component={ActivityLogEntry} />
+          <Route exact path={'/journal/activity/add'} render={(routerProps) => {
+            return <ActivityLogEntry handleSubmit={this.handleActivitySubmit} {...routerProps} />
+          }} />
       </main>
     )
   }
