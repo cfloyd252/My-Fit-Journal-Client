@@ -10,6 +10,7 @@ import WeightLogEntry from './Components/LogEntryForm/WeightLogEntry'
 import ActivityLogEntry from './Components/LogEntryForm/ActivityLogEntry'
 import './App.css'
 import EntriesApiService from './services/entries-api-service';
+import Header from './Components/Header/Header'
 import {withRouter} from 'react-router'
 
 class App extends Component {
@@ -79,6 +80,7 @@ class App extends Component {
       <main className='App'>
           <Route exact path={'/'} component={LandingPage} />
           <Route exact path={'/register'} component={RegistrationPage} />
+          <Route path={'/journal'} component={Header} />
           <Route exact path={'/journal'} render={(routerProps) => {
             return <Overview currentWeightEntry={currentWeightEntry} currentActivityEntry={currentActivityEntry} 
             currentWaterEntry={currentWaterEntry} {...routerProps} />
