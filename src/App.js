@@ -8,6 +8,8 @@ import RegistrationPage from './Components/RegistrationPage/RegistrationPage'
 import WaterLogEntry from './Components/LogEntryForm/WaterLogEntry'
 import WeightLogEntry from './Components/LogEntryForm/WeightLogEntry'
 import ActivityLogEntry from './Components/LogEntryForm/ActivityLogEntry'
+import PrivateRoute from './Utils/PrivateRoute'
+import PublicOnlyeRoute from './Utils/PublicOnlyRoute'
 import './App.css'
 import EntriesApiService from './services/entries-api-service';
 import Header from './Components/Header/Header'
@@ -78,32 +80,50 @@ class App extends Component {
 
     return (
       <main className='App'>
-          <Route exact path={'/'} component={LandingPage} />
-          <Route exact path={'/register'} component={RegistrationPage} />
-          <Route path={'/journal'} component={Header} />
-          <Route exact path={'/journal'} render={(routerProps) => {
-            return <Overview currentWeightEntry={currentWeightEntry} currentActivityEntry={currentActivityEntry} 
-            currentWaterEntry={currentWaterEntry} {...routerProps} />
-          }} />
-          <Route exact path={'/journal/weight'} render={(routerProps) => {
-            return <LogView title='Weight' dataArray={this.state.weightEntries} {...routerProps}/>
-            }} />
-          <Route exact path={'/journal/water'} render={(routerProps) => {
-            return <LogView title='Water' dataArray={this.state.waterEntries} {...routerProps}/>
-          }} />
-          <Route exact path={'/journal/activity'} render={(routerProps) => {
-            return <LogView title='Activity' dataArray={this.state.activityEntries} {...routerProps}/>
-          }} />
-          <Route path={'/journal'} component={TabNav} />
-          <Route exact path={'/journal/water/add'} render={(routerProps) => {
-            return <WaterLogEntry handleSubmit={this.handleWaterSubmit} {...routerProps} />
-          }} />
-          <Route exact path={'/journal/weight/add'} render={(routerProps) => {
-            return <WeightLogEntry handleSubmit={this.handleWeightSubmit} {...routerProps} />
-          }} />
-          <Route exact path={'/journal/activity/add'} render={(routerProps) => {
-            return <ActivityLogEntry handleSubmit={this.handleActivitySubmit} {...routerProps} />
-          }} />
+          <PublicOnlyeRoute exact path={'/'} component={LandingPage} />
+          <PublicOnlyeRoute exact path={'/register'} component={RegistrationPage} />
+          <PrivateRoute path={'/journal'} component={Header} />
+          <PrivateRoute 
+            exact path={'/journal'} 
+            component={Overview} 
+            currentWeightEntry={currentWeightEntry}  
+            currentActivityEntry={currentActivityEntry}
+            currentWaterEntry={currentWaterEntry}
+          />
+          <PrivateRoute 
+            exact path={'/journal/weight'}
+            title='Weight'
+            component={LogView}
+            dataArray={this.state.weightEntries}  
+          />
+          <PrivateRoute 
+            exact path={'/journal/water'}
+            title='Water'
+            component={LogView}
+            dataArray={this.state.waterEntries}  
+          />
+          <PrivateRoute 
+            exact path={'/journal/activity'}
+            title='Activity'
+            component={LogView}
+            dataArray={this.state.activityEntries}  
+          />
+          <PrivateRoute path={'/journal'} component={TabNav} />
+          <PrivateRoute 
+            exact path={'/journal/water/add'}
+            component={WaterLogEntry}
+            handleSubmit={this.handleWaterSubmit}
+          />
+          <PrivateRoute 
+            exact path={'/journal/weight/add'}
+            component={WeightLogEntry}
+            handleSubmit={this.handleWeightSubmit}
+          />
+          <PrivateRoute 
+            exact path={'/journal/activity/add'}
+            component={ActivityLogEntry}
+            handleSubmit={this.handleActivitySubmit}
+          />
       </main>
     )
   }
