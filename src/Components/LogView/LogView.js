@@ -11,11 +11,22 @@ class LogView extends Component {
     let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
 
    //TODO: Partition the array so we get only one EntryRow per unique date
+   const datesObj = {};
+
+   this.props.dataArray.forEach((entry) => {
+    if (!(new Date(entry.start_time).toLocaleDateString('en-US', options) in datesObj)) {
+      datesObj[new Date(entry.start_time).toLocaleDateString('en-US', options)] = []
+    }
+  
+    datesObj[new Date(entry.start_time).toLocaleDateString('en-US', options)].push(entry)
+   });
+
+   const arrayOfDates = Object.keys(datesObj)
     
-    const entryRows = this.props.dataArray.map(dataObject => {
+    const entryRows = arrayOfDates.map(dateString => {
       return (
         <EntryRow 
-          date={new Date(dataObject.start_time).toLocaleDateString('en-US', options)}
+          date={dateString}
           dataArray={this.props.dataArray}
         />
       )
