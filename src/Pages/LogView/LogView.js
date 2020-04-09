@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './LogView.css'
-import EntryRow from '../EntryRow/EntryRow'
+import EntryRow from '../../Components/EntryRow/EntryRow'
 
 class LogView extends Component {
   handleAddButton = () => {

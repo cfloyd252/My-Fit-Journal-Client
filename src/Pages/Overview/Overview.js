@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './Overview.css'
-import EntryLog from '../EntryLog/EntryLog'
+import EntryLog from '../../Components/EntryLog/EntryLog'
 
 export class Overview extends Component {
   render() {
