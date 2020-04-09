@@ -13,6 +13,8 @@ import './App.css'
 import EntriesApiService from './services/entries-api-service';
 import Header from './Components/Header/Header'
 import {withRouter} from 'react-router'
+import TokenService from './services/token-service';
+import AuthApiService from './services/auth-api-service'
 
 class App extends Component {
   state = {
@@ -22,12 +24,14 @@ class App extends Component {
   }
 
   componentDidMount() {
-    EntriesApiService.getWeightEntries()
+    if(TokenService.hasAuthToken()) {
+      EntriesApiService.getWeightEntries()
       .then(weightEntries => this.setState({ weightEntries }));
-    EntriesApiService.getWaterEntries()
-      .then(waterEntries => this.setState({ waterEntries }))
-    EntriesApiService.getActivityEntries()
-      .then(activityEntries => this.setState({ activityEntries }))
+      EntriesApiService.getWaterEntries()
+        .then(waterEntries => this.setState({ waterEntries }))
+      EntriesApiService.getActivityEntries()
+        .then(activityEntries => this.setState({ activityEntries }))
+    }
   }
 
   handleWaterSubmit = ev => {
@@ -72,6 +76,28 @@ class App extends Component {
     this.props.history.push('/journal/activity')
   }
 
+  handleSubmitJwtAuth = ev => {
+    ev.preventDefault()
+    const { user_name, password } = ev.target
+
+    AuthApiService.postLogin({
+      user_name: user_name.value,
+      password: password.value,
+    })
+      .then(res => {
+        user_name.value = ''
+        password.value= ''
+        TokenService.saveAuthToken(res.authToken)
+        EntriesApiService.getWeightEntries()
+        .then(weightEntries => this.setState({ weightEntries }));
+        EntriesApiService.getWaterEntries()
+          .then(waterEntries => this.setState({ waterEntries }))
+        EntriesApiService.getActivityEntries()
+          .then(activityEntries => this.setState({ activityEntries }))
+        this.props.history.push('/journal')
+      })
+  }
+
   render() {
     let currentWeightEntry = this.state.weightEntries[0]
     let currentWaterEntry = this.state.waterEntries[0]
@@ -79,7 +105,11 @@ class App extends Component {
 
     return (
       <main className='App'>
-          <PublicOnlyeRoute exact path={'/'} component={LandingPage} />
+          <PublicOnlyeRoute 
+            exact path={'/'} 
+            component={LandingPage} 
+            handleSubmit={this.handleSubmitJwtAuth}
+          />
           <PublicOnlyeRoute exact path={'/register'} component={RegistrationPage} />
           <PrivateRoute path={'/journal'} component={Header} />
           <PrivateRoute 
