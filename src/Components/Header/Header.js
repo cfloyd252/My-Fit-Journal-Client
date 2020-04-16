@@ -10,6 +10,9 @@ export class Header extends Component {
   render() {
     return (
       <header>
+        <p>
+          Fit Joe
+        </p>
         <button onClick={this.handleLogoutClick}>
           Logout
         </button>

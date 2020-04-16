@@ -1,0 +1,15 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 10px;
+  background-color: #B9C7D1;
+}
+
+header > button{
+  align-self: center;
+}
+
+header > p{
+  margin: 2px;
+  font-family: 'Barlow', sans-serif;
+}
