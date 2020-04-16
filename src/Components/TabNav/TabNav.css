@@ -7,13 +7,21 @@
   height: 15%;
   align-items: center;
   justify-content: space-around;
-  background-color: gray;
+  background-color: #A1A3A4;
 }
 
 #log-nav .tablinks {
   text-align: center;
   color: black;
+  font-family: 'Poppins', sans-serif;
+  font-size: 80%;
   text-decoration: none;
   cursor: pointer;
   padding: 14px 16px;
+}
+
+@media screen and (min-width: 768px) {
+  #log-nav .tablinks {
+    font-size: 100%;
+  }
 }
