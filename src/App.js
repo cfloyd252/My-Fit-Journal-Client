@@ -21,6 +21,7 @@ class App extends Component {
     weightEntries: [],
     waterEntries: [],
     activityEntries: [],
+    error: null
   }
 
   componentDidMount() {
@@ -95,7 +96,9 @@ class App extends Component {
         EntriesApiService.getActivityEntries()
           .then(activityEntries => this.setState({ activityEntries }))
         this.props.history.push('/journal')
+        this.setState({ error: null })
       })
+      .catch(res => this.setState({ error: res.error }))
   }
 
   render() {
@@ -109,6 +112,7 @@ class App extends Component {
             exact path={'/'} 
             component={LandingPage} 
             handleSubmit={this.handleSubmitJwtAuth}
+            error={this.state.error}
           />
           <PublicOnlyeRoute exact path={'/register'} component={RegistrationPage} />
           <PrivateRoute path={'/journal'} component={Header} />
