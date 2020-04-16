@@ -6,7 +6,7 @@ import './LandingPage.css'
 export class LandingPage extends Component {
   renderErrorMessage = () => {
     if(this.props.error) {
-    return (<p>{this.props.error}</p>)
+    return (<p className='error'>{this.props.error}</p>)
     }
 
     return
@@ -16,15 +16,14 @@ export class LandingPage extends Component {
     return (
       <section id='landing-page'>
         <h1>My Fit Journal</h1>
-        <h2>Welcome,</h2>
+        <h3>Welcome,</h3>
         <p>
           This application is currently set as a demo. In a future update,
           users will be able to register for their own account. This will
-          allow the user to log their own data that will help them keep
-          track of their progress to meet their own fitness goal. For the 
-          demo will be able to log and view journal entries for Fit Joe. To 
-          get started, the username is "fit.joe" and the password is "JoePassword1" 
-          (do not use quotes when logging in).  
+          allow the user to log their own data entires to track the progess of their 
+          personal finess goal. For this demo, the user will be able to log and view 
+          journal entries for Fit Joe. To get started, the username is "fit.joe" and 
+          the password is "JoePassword1" (do not use quotes when logging in).  
         </p>
         {this.renderErrorMessage()}
         <form id='login-form' onSubmit={this.props.handleSubmit}>
