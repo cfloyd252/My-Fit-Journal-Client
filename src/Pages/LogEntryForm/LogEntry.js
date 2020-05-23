@@ -4,7 +4,11 @@ import './LogEntry.css'
 
 export class LogEntry extends Component {
     render() {
-        switch(this.props.title){
+        const logType = this.props.match.params.logType
+
+        console.log(logType)
+
+        switch(logType){
             case 'water':
                 return (
                     <section className='entry_section' onSubmit={this.props.handleSubmit}>

@@ -4,7 +4,7 @@ import EntryRow from '../../Components/EntryRow/EntryRow'
 
 class LogView extends Component {
   handleAddButton = () => {
-    this.props.history.push(`/journal/${this.props.title.toLowerCase()}/add`)
+    this.props.history.push(`/journal/${this.props.match.params.logType.toLowerCase()}/add`)
   }
 
   render() {

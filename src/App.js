@@ -132,22 +132,9 @@ class App extends Component {
           />
           <PrivateRoute path={'/journal'} component={TabNav} />
           <PrivateRoute 
-            exact path={'/journal/water/add'}
-            title='water'
+            exact path={'/journal/:logType/add'}
             component={LogEntry}
             handleSubmit={this.handleWaterSubmit}
-          />
-          <PrivateRoute 
-            exact path={'/journal/weight/add'}
-            title='weight'
-            component={LogEntry}
-            handleSubmit={this.handleWeightSubmit}
-          />
-          <PrivateRoute 
-            exact path={'/journal/activity/add'}
-            title='activity'
-            component={LogEntry}
-            handleSubmit={this.handleActivitySubmit}
           />
       </main>
     )
