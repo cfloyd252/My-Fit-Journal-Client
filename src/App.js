@@ -4,9 +4,7 @@ import Overview from './Pages/Overview/Overview'
 import LogView from './Pages/LogView/LogView'
 import LandingPage from './Pages/LandingPage/LandingPage'
 import RegistrationPage from './Pages/RegistrationPage/RegistrationPage'
-import WaterLogEntry from './Pages/LogEntryForm/WaterLogEntry'
-import WeightLogEntry from './Pages/LogEntryForm/WeightLogEntry'
-import ActivityLogEntry from './Pages/LogEntryForm/ActivityLogEntry'
+import LogEntry from './Pages/LogEntryForm/LogEntry'
 import PrivateRoute from './Utils/PrivateRoute'
 import PublicOnlyeRoute from './Utils/PublicOnlyRoute'
 import './App.css'
@@ -26,12 +24,15 @@ class App extends Component {
 
   componentDidMount() {
     if(TokenService.hasAuthToken()) {
-      EntriesApiService.getWeightEntries()
-      .then(weightEntries => this.setState({ weightEntries }));
-      EntriesApiService.getWaterEntries()
-        .then(waterEntries => this.setState({ waterEntries }))
-      EntriesApiService.getActivityEntries()
-        .then(activityEntries => this.setState({ activityEntries }))
+      EntriesApiService.getEntries()
+      .then(entries => this.setState({
+        weightEntries: entries.weight,
+        waterEntries: entries.water,
+        activityEntries: entries.activity,
+      }))
+      .catch(error => this.setState({
+        error,
+      }));
     }
   }
 
@@ -64,7 +65,7 @@ class App extends Component {
   }
 
   handleActivitySubmit = ev => {
-    ev.preventDefault()
+    ev.prevent0Default()
     const { name_of_activity, start_time, end_time, calories} = ev.target
     
     EntriesApiService.postActivityEntry(name_of_activity.value, start_time.value, end_time.value, calories.value)
@@ -144,17 +145,20 @@ class App extends Component {
           <PrivateRoute path={'/journal'} component={TabNav} />
           <PrivateRoute 
             exact path={'/journal/water/add'}
-            component={WaterLogEntry}
+            title='water'
+            component={LogEntry}
             handleSubmit={this.handleWaterSubmit}
           />
           <PrivateRoute 
             exact path={'/journal/weight/add'}
-            component={WeightLogEntry}
+            title='weight'
+            component={LogEntry}
             handleSubmit={this.handleWeightSubmit}
           />
           <PrivateRoute 
             exact path={'/journal/activity/add'}
-            component={ActivityLogEntry}
+            title='activity'
+            component={LogEntry}
             handleSubmit={this.handleActivitySubmit}
           />
       </main>

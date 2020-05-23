@@ -28,9 +28,19 @@ export class LandingPage extends Component {
         {this.renderErrorMessage()}
         <form id='login-form' onSubmit={this.props.handleSubmit}>
           <label htmlFor="user_name">Username:</label>
-          <input type="text" name="user_name" id="user_name" />
+          <input 
+            type="text"
+            name="user_name" 
+            id="user_name"
+            defaultValue="fit.joe" 
+          />
           <label htmlFor="password">Password:</label>
-          <input type="password" name="password" id="password" />
+          <input 
+            type="password" 
+            name="password"  
+            id="password"
+            defaultValue='pass'  
+          />
           <button type="submit">Login</button>
           {/* <Link to='/register' id='register-link'>Register</Link> */}
         </form>
