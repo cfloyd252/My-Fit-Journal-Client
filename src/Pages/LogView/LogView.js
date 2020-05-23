@@ -8,12 +8,15 @@ class LogView extends Component {
   }
 
   render() {
+    const logType = this.props.match.params.logType;
+
     let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
 
-   //TODO: Partition the array so we get only one EntryRow per unique date
+    const logEntries = this.props.dataArray[`${logType}Entries`]
+
    const datesObj = {};
 
-   this.props.dataArray.forEach((entry) => {
+   logEntries.forEach((entry) => {
     if (!(new Date(entry.start_time).toLocaleDateString('en-US', options) in datesObj)) {
       datesObj[new Date(entry.start_time).toLocaleDateString('en-US', options)] = []
     }
@@ -27,14 +30,14 @@ class LogView extends Component {
       return (
         <EntryRow 
           date={dateString}
-          dataArray={this.props.dataArray}
+          dataArray={logEntries}
         />
       )
     })
 
     return (
       <section className='Log-View'>
-        <h1>{this.props.title} Log</h1>
+        <h1>{`${logType.charAt(0).toUpperCase()}${logType.slice(1)}`} Log</h1>
           <button className="add-data" onClick={this.handleAddButton}>
             Add Entry
           </button>

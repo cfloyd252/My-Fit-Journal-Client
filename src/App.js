@@ -125,22 +125,10 @@ class App extends Component {
             currentWaterEntry={currentWaterEntry}
           />
           <PrivateRoute 
-            exact path={'/journal/weight'}
+            exact path={'/journal/:logType'}
             title='Weight'
             component={LogView}
-            dataArray={this.state.weightEntries}  
-          />
-          <PrivateRoute 
-            exact path={'/journal/water'}
-            title='Water'
-            component={LogView}
-            dataArray={this.state.waterEntries}  
-          />
-          <PrivateRoute 
-            exact path={'/journal/activity'}
-            title='Activity'
-            component={LogView}
-            dataArray={this.state.activityEntries}  
+            dataArray={this.state}  
           />
           <PrivateRoute path={'/journal'} component={TabNav} />
           <PrivateRoute 
