@@ -12,29 +12,11 @@ import EntriesApiService from './services/entries-api-service';
 import Header from './Components/Header/Header'
 import {withRouter} from 'react-router'
 import TokenService from './services/token-service';
-import AuthApiService from './services/auth-api-service'
+import AuthApiService from './services/auth-api-service';
+import AppContext from './context/AppContext'
 
 class App extends Component {
-  state = {
-    weightEntries: [],
-    waterEntries: [],
-    activityEntries: [],
-    error: null
-  }
-
-  componentDidMount() {
-    if(TokenService.hasAuthToken()) {
-      EntriesApiService.getEntries()
-      .then(entries => this.setState({
-        weightEntries: entries.weight,
-        waterEntries: entries.water,
-        activityEntries: entries.activity,
-      }))
-      .catch(error => this.setState({
-        error,
-      }));
-    }
-  }
+  static contextType = AppContext;
 
   handleWaterSubmit = ev => {
     ev.preventDefault()
@@ -64,18 +46,18 @@ class App extends Component {
     this.props.history.push('/journal/weight')
   }
 
-  handleActivitySubmit = ev => {
+  handleexerciseSubmit = ev => {
     ev.prevent0Default()
-    const { name_of_activity, start_time, end_time, calories} = ev.target
+    const { name_of_exercise, start_time, end_time, calories} = ev.target
     
-    EntriesApiService.postActivityEntry(name_of_activity.value, start_time.value, end_time.value, calories.value)
-      .then(activityEntry => {
-        this.setState({ activityEntries: [...this.state.activityEntries, activityEntry]})
-        return EntriesApiService.getActivityEntries()
+    EntriesApiService.postexerciseEntry(name_of_exercise.value, start_time.value, end_time.value, calories.value)
+      .then(exerciseEntry => {
+        this.setState({ exerciseEntries: [...this.state.exerciseEntries, exerciseEntry]})
+        return EntriesApiService.getexerciseEntries()
       })
-      .then(activityEntries => this.setState({ activityEntries }))
+      .then(exerciseEntries => this.setState({ exerciseEntries }))
 
-    this.props.history.push('/journal/activity')
+    this.props.history.push('/journal/exercise')
   }
 
   handleSubmitJwtAuth = ev => {
@@ -90,52 +72,47 @@ class App extends Component {
         user_name.value = ''
         password.value= ''
         TokenService.saveAuthToken(res.authToken)
-        EntriesApiService.getWeightEntries()
-        .then(weightEntries => this.setState({ weightEntries }));
-        EntriesApiService.getWaterEntries()
-          .then(waterEntries => this.setState({ waterEntries }))
-        EntriesApiService.getActivityEntries()
-          .then(activityEntries => this.setState({ activityEntries }))
         this.props.history.push('/journal')
-        this.setState({ error: null })
       })
       .catch(res => this.setState({ error: res.error }))
   }
 
   render() {
-    let currentWeightEntry = this.state.weightEntries[0]
-    let currentWaterEntry = this.state.waterEntries[0]
-    let currentActivityEntry = this.state.activityEntries[0]
-
     return (
       <main className='App'>
-          <PublicOnlyeRoute 
-            exact path={'/'} 
-            component={LandingPage} 
-            handleSubmit={this.handleSubmitJwtAuth}
-            error={this.state.error}
-          />
-          <PublicOnlyeRoute exact path={'/register'} component={RegistrationPage} />
-          <PrivateRoute path={'/journal'} component={Header} />
-          <PrivateRoute 
-            exact path={'/journal'} 
-            component={Overview} 
-            currentWeightEntry={currentWeightEntry}  
-            currentActivityEntry={currentActivityEntry}
-            currentWaterEntry={currentWaterEntry}
-          />
-          <PrivateRoute 
-            exact path={'/journal/:logType'}
-            title='Weight'
-            component={LogView}
-            dataArray={this.state}  
-          />
-          <PrivateRoute path={'/journal'} component={TabNav} />
-          <PrivateRoute 
-            exact path={'/journal/:logType/add'}
-            component={LogEntry}
-            handleSubmit={this.handleWaterSubmit}
-          />
+        <PrivateRoute 
+          path={'/journal'}  
+          component={Header} 
+        />
+        <PublicOnlyeRoute 
+          exact path={'/'} 
+          component={LandingPage} 
+          handleSubmit={this.handleSubmitJwtAuth}
+          // error={this.state.error}
+        />
+        <PublicOnlyeRoute 
+          exact path={'/register'} 
+          component={RegistrationPage} 
+        />
+        <PrivateRoute 
+          exact path={'/journal'} 
+          component={Overview} 
+          // currentWeightEntry={currentWeightEntry}  
+          // currentexerciseEntry={currentexerciseEntry}
+          // currentWaterEntry={currentWaterEntry}
+        />
+        <PrivateRoute 
+          exact path={'/journal/:logType'}
+          title='Weight'
+          component={LogView}
+          dataArray={this.state}  
+        />
+        <PrivateRoute path={'/journal'} component={TabNav} />
+        <PrivateRoute 
+          exact path={'/journal/:logType/add'}
+          component={LogEntry}
+          handleSubmit={this.handleWaterSubmit}
+        />
       </main>
     )
   }

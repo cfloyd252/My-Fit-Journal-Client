@@ -45,11 +45,11 @@ export default {
       "log_time": "2020-02-04T11:23:54Z",
     },
   ],
-  "activityEntries": [
+  "exerciseEntries": [
     {
       "id": 3,
       "user_name": "Test User 1",
-      "activity_name": "Running",
+      "exercise_name": "Running",
       "log_time": "2020-02-04T11:23:54Z",
       "duration": "7 mins",
       "calories_burned": 20,

@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import './LogView.css'
 import EntryRow from '../../Components/EntryRow/EntryRow'
+import AppContext from '../../context/AppContext'
 
 class LogView extends Component {
+  static contextType = AppContext;
+
   handleAddButton = () => {
     this.props.history.push(`/journal/${this.props.match.params.logType.toLowerCase()}/add`)
   }
@@ -12,7 +15,7 @@ class LogView extends Component {
 
     let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
 
-    const logEntries = this.props.dataArray[`${logType}Entries`]
+    const logEntries = this.context.entries[`${logType}`]
 
    const datesObj = {};
 

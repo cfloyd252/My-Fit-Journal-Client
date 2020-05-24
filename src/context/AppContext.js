@@ -1,19 +1,25 @@
 import React, { Component } from 'react';
 
-const EntriesContext = React.createContext({
+const AppContext = React.createContext({
   entries: {},
 });
 
-export default EntriesContext;
+export default AppContext;
 
-export class EntriesProvider extends Component {
+export class AppProvider extends Component {
   state = {
     entries: {},
+    error: null,
+    excercises: []
   };
 
   setEntries = entries => {
     this.setState({ entries });
   };
+
+  setError = error => {
+    this.setState({ error })
+  }
 
   deleteComment = commentId => {
     this.setState({
@@ -37,9 +43,9 @@ export class EntriesProvider extends Component {
     };
 
     return (
-      <EntriesContext.Provider value={value}>
+      <AppContext.Provider value={value}>
         {this.props.children}
-      </EntriesContext.Provider>
+      </AppContext.Provider>
     );
   }
 }

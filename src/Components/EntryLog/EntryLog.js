@@ -6,7 +6,7 @@ export class EntryLog extends Component {
     if (!this.props.entryInfo) {
       return null
     }
-    if (this.props.entryInfo.activity_name === undefined) {
+    if (this.props.entryInfo.exercise_name === undefined) {
       return (
         <div className="log-data">
           <p>{this.props.entryInfo.quanity} {this.props.entryInfo.unit_of_measurement}</p>
@@ -15,7 +15,7 @@ export class EntryLog extends Component {
     }
     return (
       <div className="log-data">
-      <p>{this.props.entryInfo.activity_name}</p>
+      <p>{this.props.entryInfo.exercise_name}</p>
       {/* <p>{this.props.entryInfo.duration}</p> */}
     </div>
     )
