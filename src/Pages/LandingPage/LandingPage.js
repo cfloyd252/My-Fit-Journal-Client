@@ -1,9 +1,28 @@
 import React, { Component } from 'react'
 // import { Link } from 'react-router-dom'
+import AuthApiService from '../../services/auth-api-service';
+import TokenService from '../../services/token-service';
 import './LandingPage.css'
 
 
 export class LandingPage extends Component {
+  handleSubmitJwtAuth = ev => {
+    ev.preventDefault()
+    const { user_name, password } = ev.target
+
+    AuthApiService.postLogin({
+      user_name: user_name.value,
+      password: password.value,
+    })
+      .then(res => {
+        user_name.value = ''
+        password.value= ''
+        TokenService.saveAuthToken(res.authToken)
+        this.props.history.push('/journal')
+      })
+      .catch(res => this.setState({ error: res.error }))
+  }
+
   renderErrorMessage = () => {
     if(this.props.error) {
     return (<p className='error'>{this.props.error}</p>)
@@ -26,7 +45,7 @@ export class LandingPage extends Component {
           the password is "JoePassword1" (do not use quotes when logging in).  
         </p>
         {this.renderErrorMessage()}
-        <form id='login-form' onSubmit={this.props.handleSubmit}>
+        <form id='login-form' onSubmit={this.handleSubmitJwtAuth}>
           <label htmlFor="user_name">Username:</label>
           <input 
             type="text"

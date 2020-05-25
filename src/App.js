@@ -11,8 +11,6 @@ import './App.css'
 import EntriesApiService from './services/entries-api-service';
 import Header from './Components/Header/Header'
 import {withRouter} from 'react-router'
-import TokenService from './services/token-service';
-import AuthApiService from './services/auth-api-service';
 import AppContext from './context/AppContext'
 
 class App extends Component {
@@ -60,23 +58,6 @@ class App extends Component {
     this.props.history.push('/journal/exercise')
   }
 
-  handleSubmitJwtAuth = ev => {
-    ev.preventDefault()
-    const { user_name, password } = ev.target
-
-    AuthApiService.postLogin({
-      user_name: user_name.value,
-      password: password.value,
-    })
-      .then(res => {
-        user_name.value = ''
-        password.value= ''
-        TokenService.saveAuthToken(res.authToken)
-        this.props.history.push('/journal')
-      })
-      .catch(res => this.setState({ error: res.error }))
-  }
-
   render() {
     return (
       <main className='App'>
@@ -87,8 +68,6 @@ class App extends Component {
         <PublicOnlyeRoute 
           exact path={'/'} 
           component={LandingPage} 
-          handleSubmit={this.handleSubmitJwtAuth}
-          // error={this.state.error}
         />
         <PublicOnlyeRoute 
           exact path={'/register'} 
@@ -97,15 +76,10 @@ class App extends Component {
         <PrivateRoute 
           exact path={'/journal'} 
           component={Overview} 
-          // currentWeightEntry={currentWeightEntry}  
-          // currentexerciseEntry={currentexerciseEntry}
-          // currentWaterEntry={currentWaterEntry}
         />
         <PrivateRoute 
           exact path={'/journal/:logType'}
-          title='Weight'
-          component={LogView}
-          dataArray={this.state}  
+          component={LogView} 
         />
         <PrivateRoute path={'/journal'} component={TabNav} />
         <PrivateRoute 

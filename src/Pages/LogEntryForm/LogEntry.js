@@ -1,30 +1,89 @@
 /* eslint-disable default-case */
 import React, { Component } from 'react'
+import EntriesApiService from '../../services/entries-api-service';
+import AppContext from '../../context/AppContext'
 import './LogEntry.css'
 
 export class LogEntry extends Component {
+  static contextType = AppContext;
+
   state = {
-    logType: this.props.match.params.logType
+    logType: this.props.match.params.logType,
+    exerciseName: {
+      value: '',
+      touched: false
+    },
+    quanity: {
+      value: null,
+      touched: false
+    },
+    unitOfMeasurement: {
+      value: '',
+      touched: false
+    },
+    startTime: {
+      value: null,
+      touched: false
+    },
+    endTime: {
+      value: '',
+      touched: false
+    },
+    calories: {
+      value: null,
+      touched: false
+    },
+  }
+
+  handleSubmit = ev => {
+    ev.preventDefault()
+    const { logType, exerciseName, quanity, unitOfMeasurement, startTime, endTime, calories } = this.state
+
+    const newEntry = {
+      log_type: logType,
+      exercise_name: exerciseName.value,
+      quanity: quanity.value,
+      unit_of_measurement: unitOfMeasurement.value,
+      start_time: startTime.value,
+      end_time: endTime.value,
+      calories: calories.value
+    }
+
+    console.log(newEntry)
+    
+    // EntriesApiService.postEntry(newEntry)
+    //   .then(entry => console.log(entry))
+    //   .catch(error => this.context.setError(error));
+
+    this.props.history.push(`/journal/${this.state.logType}`)
+  }
+
+  updateValue(key, value) {
+    this.setState({
+      [`${key}`]: {
+        value,
+        touched: true
+      }
+    })
   }
 
   render() {
-    // const logType = this.props.match.params.logType
-    console.log(this.state.logType)
     switch(this.state.logType){
         case 'water':
             return (
-                <section className='entry_section' onSubmit={this.props.handleSubmit}>
+                <section className='entry_section' onSubmit={this.handleSubmit}>
                   <form className='entry_form' id='water_form'>
                   <label htmlFor='quanity'>Quanity</label>
-                  <input name='quanity' type='number' min='1' required />
+                  <input name='quanity' type='number' min='1' onChange={(e) => this.updateValue('quanity', e.target.value)}/>
                   <label htmlFor='unit_of_measurement'>Unit of Measurement</label>
-                  <select name='unit_of_measurement'>
+                  <select name='unit_of_measurement'onChange={(e) => this.updateValue('unitOfMeasurement', e.target.value)} >
+                    <option value=''>Select</option>
                     <option value='ml'>ml</option>
                     <option value='cup'>cup</option>
                     <option value='fl oz'>fl oz</option>
                   </select>
                   <label htmlFor="start_time">Date and time</label>
-                  <input type="datetime-local" name="start_time"></input>
+                  <input type="datetime-local" name="start_time" onChange={(e) => this.updateValue('startTime', e.target.value)}/>
                   <button className ='submit_data' type="submit">Submit</button>
                 </form>
                 </section>
@@ -32,16 +91,16 @@ export class LogEntry extends Component {
         case 'weight':
             return (
                 <section className='entry_section'>
-                  <form className='entry_form' id='weight_form' onSubmit={this.props.handleSubmit}>
+                  <form className='entry_form' id='weight_form' onSubmit={this.handleSubmit}>
                   <label htmlFor='quanity'>Quanity</label>
-                  <input name='quanity' type='number' min='1' required />
+                  <input name='quanity' type='number' min='1'  />
                   <label htmlFor='unit_of_measurement'>Unit of Measurement</label>
                   <select name='unit_of_measurement'>
                     <option value='lb'>lbs</option>
                     <option value='kg'>kg</option>
                   </select>
                   <label htmlFor="start_time">Date and time</label>
-                  <input type="datetime-local" name="start_time" required></input>
+                  <input type="datetime-local" name="start_time" ></input>
                   <button className ='submit_data' type="submit">Submit</button>
                 </form>
                 </section>
@@ -49,13 +108,13 @@ export class LogEntry extends Component {
         case 'exercise':
             return (
                 <section className='entry_section'>
-                  <form className='entry_form' id='exercise_form' onSubmit={this.props.handleSubmit}>
+                  <form className='entry_form' id='exercise_form' onSubmit={this.handleSubmit}>
                     <label htmlFor='name_of_exercise'>Name of exercise</label>
-                    <input name='name_of_exercise' type='text' required />
+                    <input name='name_of_exercise' type='text' />
                     <label for="start_time">Start time</label>
-                    <input type="datetime-local" name="start_time" required></input>
+                    <input type="datetime-local" name="start_time"></input>
                     <label for="end_time">End time</label>
-                    <input type="datetime-local" name="end_time" required></input>
+                    <input type="datetime-local" name="end_time"></input>
                     <label htmlFor='calories'>Calories burned</label>
                     <input name='calories' type='number' min='1'></input>
                     <button className ='submit_data' type="submit">Submit</button>

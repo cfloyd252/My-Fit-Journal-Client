@@ -21,25 +21,12 @@ export class AppProvider extends Component {
     this.setState({ error })
   }
 
-  deleteComment = commentId => {
-    this.setState({
-      comments: this.state.comments.filter(comment => comment.id !== commentId)
-    });
-  };
 
   render() {
     const value = {
       entries: this.state.entries,
       setEntries: this.setEntries,
-      setComments: this.setComments,
-      setPostId: this.setPostId,
-      editPost: this.editPost,
-      deletePost: this.deletePost,
-      deleteComment: this.deleteComment,
-      filterEntriesByTitle: this.filterEntriesByTitle,
-      sortEntriesByKey: this.sortEntriesByKey,
-      filterEntriesByUserId: this.filterEntriesByUserId,
-      clearFilteredEntries: this.clearFilteredEntries
+      setError: this.setError
     };
 
     return (
