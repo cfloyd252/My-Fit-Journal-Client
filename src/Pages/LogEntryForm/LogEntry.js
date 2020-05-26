@@ -48,11 +48,9 @@ export class LogEntry extends Component {
       end_time: endTime.value,
       calories: calories.value
     }
-
-    console.log(newEntry)
     
     EntriesApiService.postEntry(newEntry)
-      .then(entry => console.log(entry))
+      .then(entry => this.context.addEntry(logType, entry))
       .catch(error => this.context.setError(error));
 
     this.props.history.push(`/journal/${this.state.logType}`)

@@ -17,6 +17,17 @@ export class AppProvider extends Component {
     this.setState({ entries });
   };
 
+  addEntry = (logType, newEntry) => {
+    this.setState({
+      entries: {
+        ...this.state.entries,
+        [`${logType}`]: [...this.state.entries[`${logType}`], newEntry].sort((a, b) => {
+          return new Date(b.start_time) - new Date(a.start_time);
+        })
+      }
+    })
+  }
+
   setError = error => {
     this.setState({ error })
   }
@@ -26,7 +37,8 @@ export class AppProvider extends Component {
     const value = {
       entries: this.state.entries,
       setEntries: this.setEntries,
-      setError: this.setError
+      setError: this.setError,
+      addEntry: this.addEntry
     };
 
     return (
