@@ -2,10 +2,12 @@
   align-self: flex-start;
   padding-left: 15px;
   padding-right: 15px;
+  width: 100%;
 }
 
 .data-container {
   display: flex;
   flex-direction: row-reverse;
   justify-content: flex-end;
+  flex-wrap: wrap;
 }

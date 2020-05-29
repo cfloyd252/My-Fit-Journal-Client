@@ -46,7 +46,7 @@ export class LogEntry extends Component {
       unit_of_measurement: unitOfMeasurement.value,
       start_time: startTime.value,
       end_time: endTime.value,
-      calories: calories.value
+      calories: calories.value || 0
     }
     
     EntriesApiService.postEntry(newEntry)
@@ -81,7 +81,7 @@ export class LogEntry extends Component {
                     <option value='fl oz'>fl oz</option>
                   </select>
                   <label htmlFor="start_time">Date and time</label>
-                  <input type="datetime-local" name="start_time" onChange={(e) => this.updateValue('startTime', e.target.value)}/>
+                  <input type="datetime-local" name="start_time" onChange={(e) => this.updateValue('startTime', e.target.value)} defaultValue={new Date().toISOString().substr(0,16)}/>
                   <button className ='submit_data' type="submit">Submit</button>
                 </form>
                 </section>
@@ -95,11 +95,11 @@ export class LogEntry extends Component {
                   <label htmlFor='unit_of_measurement'>Unit of Measurement</label>
                   <select name='unit_of_measurement' onChange={(e) => this.updateValue('unitOfMeasurement', e.target.value)}>
                     <option>Select</option>
-                    <option value='lb'>lbs</option>
+                    <option value='lbs'>lbs</option>
                     <option value='kg'>kg</option>
                   </select>
                   <label htmlFor="start_time">Date and time</label>
-                  <input type="datetime-local" name="start_time" onChange={(e) => this.updateValue('startTime', e.target.value)} />
+                  <input type="datetime-local" name="start_time" onChange={(e) => this.updateValue('startTime', e.target.value)} defaultValue={new Date().toISOString().substr(0,16)}/>
                   <button className ='submit_data' type="submit">Submit</button>
                 </form>
                 </section>
@@ -109,11 +109,18 @@ export class LogEntry extends Component {
                 <section className='entry_section'>
                   <form className='entry_form' id='exercise_form' onSubmit={this.handleSubmit}>
                     <label htmlFor='name_of_exercise'>Name of exercise</label>
-                    <input name='name_of_exercise' type='text' onChange={(e) => this.updateValue('exerciseName', e.target.value)}/>
-                    <label for="start_time">Start time</label>
-                    <input type="datetime-local" name="start_time" onChange={(e) => this.updateValue('startTime', e.target.value)}/>
+                    <select name='name_of_exercise' onChange={(e) => this.updateValue('exerciseName', e.target.value)}>
+                    <option value={null}>Select</option>
+                    <option value='Walk'>Walk</option>
+                    <option value='Run'>Run</option>
+                    <option value='Dance'>Dance</option>
+                    <option value='Weight Lifting'>Weight Lifting</option>
+                    <option value='Yoga'>Yoga</option>
+                  </select>
+                    <label htmlFor="start_time">Start time</label>
+                    <input type="datetime-local" name="start_time" onChange={(e) => this.updateValue('startTime', e.target.value)} defaultValue={new Date().toISOString().substr(0,16)}/>
                     <label for="end_time">End time</label>
-                    <input type="datetime-local" name="end_time" onChange={(e) => this.updateValue('endTime', e.target.value)}/>
+                    <input type="datetime-local" name="end_time" onChange={(e) => this.updateValue('endTime', e.target.value)} defaultValue={this.state.startTime.value}/>
                     <label htmlFor='calories'>Calories burned</label>
                     <input name='calories' type='number' min='1' onChange={(e) => this.updateValue('calories', e.target.value)}/>
                     <button className ='submit_data' type="submit">Submit</button>

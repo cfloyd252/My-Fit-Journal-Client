@@ -32,13 +32,20 @@ export class AppProvider extends Component {
     this.setState({ error })
   }
 
+  clearError = () => {
+    this.setState({
+      error: null
+    })
+  }
 
   render() {
     const value = {
       entries: this.state.entries,
+      error: this.state.error,
       setEntries: this.setEntries,
       setError: this.setError,
-      addEntry: this.addEntry
+      addEntry: this.addEntry,
+      clearError: this.clearError
     };
 
     return (

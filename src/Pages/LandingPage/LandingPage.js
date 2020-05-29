@@ -2,10 +2,13 @@ import React, { Component } from 'react'
 // import { Link } from 'react-router-dom'
 import AuthApiService from '../../services/auth-api-service';
 import TokenService from '../../services/token-service';
+import AppContext from '../../context/AppContext'
 import './LandingPage.css'
 
 
 export class LandingPage extends Component {
+  static contextType = AppContext; 
+
   handleSubmitJwtAuth = ev => {
     ev.preventDefault()
     const { user_name, password } = ev.target
@@ -20,15 +23,19 @@ export class LandingPage extends Component {
         TokenService.saveAuthToken(res.authToken)
         this.props.history.push('/journal')
       })
-      .catch(res => this.setState({ error: res.error }))
+      .catch(res => this.context.setError(res.error))
   }
 
   renderErrorMessage = () => {
-    if(this.props.error) {
-    return (<p className='error'>{this.props.error}</p>)
+    if(this.context.error) {
+    return (<p className='error'>{this.context.error}</p>)
     }
 
     return
+  }
+
+  componentWillUnmount () {
+    this.context.clearError()
   }
 
   render() {

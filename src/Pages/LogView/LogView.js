@@ -45,7 +45,7 @@ class LogView extends Component {
         return (
           <EntryRow 
             date={dateString}
-          dataArray={logEntries}
+            dataArray={logEntries}
           />
         )
       })
