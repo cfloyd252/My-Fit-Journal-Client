@@ -18,7 +18,7 @@ export class LogEntry extends Component {
       touched: false
     },
     unitOfMeasurement: {
-      value: '',
+      value: null,
       touched: false
     },
     startTime: {
@@ -38,14 +38,21 @@ export class LogEntry extends Component {
   handleSubmit = ev => {
     ev.preventDefault()
     const { logType, exerciseName, quanity, unitOfMeasurement, startTime, endTime, calories } = this.state
+    let unitOfMeasurementTargetValue, exerciseNameTargetValue = null
+
+    if(ev.target.unit_of_measurement) {
+      unitOfMeasurementTargetValue = ev.target.unit_of_measurement.value
+    } else if (ev.target.name_of_exercise) {
+      exerciseNameTargetValue = ev.target.name_of_exercise.value
+    }
 
     const newEntry = {
       log_type: logType,
-      exercise_name: exerciseName.value,
+      exercise_name: exerciseName.value || exerciseNameTargetValue,
       quanity: quanity.value,
-      unit_of_measurement: unitOfMeasurement.value,
-      start_time: startTime.value,
-      end_time: endTime.value,
+      unit_of_measurement: unitOfMeasurement.value || unitOfMeasurementTargetValue,
+      start_time: startTime.value || ev.target.start_time.value,
+      end_time: endTime.value || ev.target.start_time.value,
       calories: calories.value || 0
     }
     
@@ -72,10 +79,9 @@ export class LogEntry extends Component {
                 <section className='entry_section' onSubmit={this.handleSubmit}>
                   <form className='entry_form' id='water_form'>
                   <label htmlFor='quanity'>Quanity</label>
-                  <input name='quanity' type='number' min='1' onChange={(e) => this.updateValue('quanity', e.target.value)}/>
+                  <input name='quanity' type='number' min='1' required onChange={(e) => this.updateValue('quanity', e.target.value)}/>
                   <label htmlFor='unit_of_measurement'>Unit of Measurement</label>
                   <select name='unit_of_measurement' onChange={(e) => this.updateValue('unitOfMeasurement', e.target.value)} >
-                    <option value=''>Select</option>
                     <option value='ml'>ml</option>
                     <option value='cup'>cup</option>
                     <option value='fl oz'>fl oz</option>
@@ -88,13 +94,12 @@ export class LogEntry extends Component {
               )
         case 'weight':
             return (
-                <section className='entry_section'>
-                  <form className='entry_form' id='weight_form' onSubmit={this.handleSubmit}>
+              <section className='entry_section'>
+                <form className='entry_form' id='weight_form' onSubmit={this.handleSubmit}>
                   <label htmlFor='quanity'>Quanity</label>
-                  <input name='quanity' type='number' min='1' onChange={(e) => this.updateValue('quanity', e.target.value)} />
+                  <input name='quanity' type='number' min='1' required onChange={(e) => this.updateValue('quanity', e.target.value)} />
                   <label htmlFor='unit_of_measurement'>Unit of Measurement</label>
                   <select name='unit_of_measurement' onChange={(e) => this.updateValue('unitOfMeasurement', e.target.value)}>
-                    <option>Select</option>
                     <option value='lbs'>lbs</option>
                     <option value='kg'>kg</option>
                   </select>
@@ -102,15 +107,14 @@ export class LogEntry extends Component {
                   <input type="datetime-local" name="start_time" onChange={(e) => this.updateValue('startTime', e.target.value)} defaultValue={new Date().toISOString().substr(0,16)}/>
                   <button className ='submit_data' type="submit">Submit</button>
                 </form>
-                </section>
-              )
+              </section>
+            )
         case 'exercise':
             return (
                 <section className='entry_section'>
                   <form className='entry_form' id='exercise_form' onSubmit={this.handleSubmit}>
                     <label htmlFor='name_of_exercise'>Name of exercise</label>
                     <select name='name_of_exercise' onChange={(e) => this.updateValue('exerciseName', e.target.value)}>
-                    <option value={null}>Select</option>
                     <option value='Walk'>Walk</option>
                     <option value='Run'>Run</option>
                     <option value='Dance'>Dance</option>
@@ -126,7 +130,7 @@ export class LogEntry extends Component {
                     <button className ='submit_data' type="submit">Submit</button>
                   </form>
                 </section>
-              )
+            )
     }
   }
 }

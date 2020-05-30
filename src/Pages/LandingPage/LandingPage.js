@@ -44,12 +44,10 @@ export class LandingPage extends Component {
         <h1>My Fit Journal</h1>
         <h3>Welcome,</h3>
         <p>
-          This application is currently set as a demo. In a future update,
-          users will be able to register for their own account. This will
-          allow the user to log their own data entires to track the progess of their 
-          personal finess goal. For this demo, the user will be able to log and view 
-          journal entries for Fit Joe. To get started, the username is "fit.joe" and 
-          the password is "JoePassword1" (do not use quotes when logging in).  
+         Being here menas that you are on a journey to meet your fitness goals. This aplicaition allows users
+         to log and track their personal fitness data such as your weight, the amount of water consumtion, and any type
+         of excersise done. While the registration is being completed, feel free to demo the website using the login credentials
+         for fit.joe.  
         </p>
         {this.renderErrorMessage()}
         <form id='login-form' onSubmit={this.handleSubmitJwtAuth}>

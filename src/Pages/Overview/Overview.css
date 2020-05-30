@@ -1,11 +1,13 @@
 #overview-data{
   display: flex;
   flex-direction: column;
-  border: 1px solid black;
-  padding-bottom: 16px;
-  padding-left: 15px;
-  padding-right: 15px;
+  border-style: double;
+  border-width: 5px;
   align-items: center;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 5% 15%;
+  margin-top: 70px;
 }
 
 .data {
@@ -13,4 +15,12 @@
   padding: 0px 5px;
   text-align: center;
   margin-right: 5px;
+}
+
+#overview {
+  background-image: url('../../images/WIN_20200529_02_27_41_Pro.jpg');
+}
+
+#overview-data > h2{
+  margin: 0;
 }

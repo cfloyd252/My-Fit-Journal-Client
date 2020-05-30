@@ -12,7 +12,7 @@ class LogView extends Component {
   }
 
   componentDidMount() {
-    if(!this.context.entries[`${this.state.logType}`]){
+    if(this.context.entries[`${this.state.logType}`].length === 0){
     return EntriesApiService.getEntries()
         .then(entries => this.context.setEntries(entries))
         .catch(error => this.context.setError(error));
@@ -24,7 +24,7 @@ class LogView extends Component {
   }
 
   renderList = () => {
-    if(this.context.entries[`${this.state.logType}`]) {
+    if(this.context.entries[`${this.state.logType}`].length > 0) {
       let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
 
       const logEntries = this.context.entries[`${this.state.logType}`]

@@ -8,7 +8,12 @@ export default AppContext;
 
 export class AppProvider extends Component {
   state = {
-    entries: {},
+    user: null,
+    entries: {
+      water: [],
+      exercise: [],
+      weight: []
+    },
     error: null,
     excercises: []
   };
@@ -16,6 +21,10 @@ export class AppProvider extends Component {
   setEntries = entries => {
     this.setState({ entries });
   };
+
+  setUser = user => {
+    this.setState({ user })
+  }
 
   addEntry = (logType, newEntry) => {
     this.setState({
@@ -42,7 +51,9 @@ export class AppProvider extends Component {
     const value = {
       entries: this.state.entries,
       error: this.state.error,
+      user: this.state.user,
       setEntries: this.setEntries,
+      setUser: this.setUser,
       setError: this.setError,
       addEntry: this.addEntry,
       clearError: this.clearError

@@ -1,29 +1,36 @@
 import React, { Component } from 'react'
 import './Overview.css'
 import EntryLog from '../../Components/EntryLog/EntryLog'
-import EntriesApiService from '../../services/entries-api-service'
+import UsersApiService from '../../services/users-api-service'
 import AppContext from '../../context/AppContext'
 
 export class Overview extends Component {
   static contextType = AppContext;
 
   componentDidMount() {
-   EntriesApiService.getEntries()
-    .then(entries => this.context.setEntries(entries))
-    .catch(error => this.context.setError(error));
+      return UsersApiService.getUser()
+          .then(user => this.context.setUser(user))
+          .catch(error => this.context.setError(error));
+  }
+
+  renderName = () => {
+    if(this.context.user){
+      return (
+        <section id="overview">
+          <div id="overview-data">
+          <h2>{this.context.user.name}'s</h2>
+          <h2>Journal</h2>
+          </div>
+        </section>
+      )
+    }
   }
 
   render() {
     return (
       <section id="overview">
-        <h1>Overview</h1>
         <div id="overview-data">
-          <p>Current Weight</p>
-          <EntryLog entryInfo={this.props.currentWeightEntry}/>
-          <p>Latest exercise</p>
-          <EntryLog entryInfo={this.props.currentexerciseEntry}/>
-          <p>Water Intake</p>
-          <EntryLog entryInfo={this.props.currentWaterEntry}/>
+          {this.renderName()}
         </div>
       </section>
     )
