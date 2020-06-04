@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import AuthApiService from '../../services/auth-api-service';
 import TokenService from '../../services/token-service';
 import AppContext from '../../context/AppContext'
@@ -44,10 +44,10 @@ export class LandingPage extends Component {
         <h1>My Fit Journal</h1>
         <h3>Welcome,</h3>
         <p>
-         Being here menas that you are on a journey to meet your fitness goals. This aplicaition allows users
-         to log and track their personal fitness data such as your weight, the amount of water consumtion, and any type
-         of excersise done. While the registration is being completed, feel free to demo the website using the login credentials
-         for fit.joe.  
+          Being here means that you are on a journey to meet your fitness goals. This application allows users
+          to log and track their personal fitness data such as your weight, the amount of water consumption, and any type
+          of exercise done. While the registration is being completed, feel free to demo the website using the login credentials
+          for fit.joe.
         </p>
         {this.renderErrorMessage()}
         <form id='login-form' onSubmit={this.handleSubmitJwtAuth}>
@@ -66,7 +66,7 @@ export class LandingPage extends Component {
             defaultValue='pass'  
           />
           <button type="submit">Login</button>
-          {/* <Link to='/register' id='register-link'>Register</Link> */}
+          <Link to='/register' id='register-link'>Register</Link>
         </form>
       </section>
     )

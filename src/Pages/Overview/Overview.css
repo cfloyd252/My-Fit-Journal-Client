@@ -19,6 +19,7 @@
 
 #overview {
   background-image: url('../../images/WIN_20200529_02_27_41_Pro.jpg');
+  overflow: hidden;
 }
 
 #overview-data > h2{
