@@ -14,6 +14,14 @@ My Fit Journal is a web application that allows the the user to track their fitn
 fitness data. Currently there are logs for water consumtion, user's weight, and their exercises. In future updates, the user will also 
 be able to log meals and create a list of custom exercise names.
 
+<div>
+    <img src='./src/screenshots/Landing.jpg'>
+    <img src='./src/screenshots/cover.jpg'>
+    <img src='./src/screenshots/weight_log.jpg'>
+    <img src='./src/screenshots/exercise_log.jpg'>
+    <img src='./src/screenshots/water_log.jpg'>
+</div>
+
 ## Tech Stack
 
 React.js  
