@@ -6,9 +6,9 @@ export class TabNav extends Component {
   render() {
     return (
     <nav id="log-nav">
-      <Link to='/journal/weight' className="tablinks">Weight Log</Link>
-      <Link to='/journal/exercise' className="tablinks" id='center-tab'>Exercise Log</Link>
-      <Link to='/journal/water' className="tablinks">Water Log</Link>
+      <Link to='/journal/weight' className="tablinks"><img src={require('../../images/weight.png')} alt='weight icon' /></Link>
+      <Link to='/journal/exercise' className="tablinks" id='center-tab'><img src={require('../../images/exercise.png')} alt='exercise icon' /></Link>
+      <Link to='/journal/water' className="tablinks"><img src={require('../../images/water.png')} alt='water icon' /></Link>
     </nav>
     )
   }

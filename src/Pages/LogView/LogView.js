@@ -68,7 +68,7 @@ class LogView extends Component {
       <section className='Log-View'>
         <h1>{`${this.state.logType.charAt(0).toUpperCase()}${this.state.logType.slice(1)}`} Log</h1>
           <button className="add-data" onClick={this.handleAddButton}>
-            Add Entry
+            <img src={require('../../images/plus.png')} alt='add entry' />
           </button>
         {this.renderList()}
       </section>
