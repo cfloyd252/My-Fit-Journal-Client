@@ -46,8 +46,8 @@ export class LandingPage extends Component {
         <p>
           Being here means that you are on a journey to meet your fitness goals. This application allows users
           to log and track their personal fitness data such as your weight, the amount of water consumption, and any type
-          of exercise done. While the registration is being completed, feel free to demo the website using the login credentials
-          for fit.joe.
+          of exercise completed. Feel free to test out the app using the login credentials for fit.joe, or register 
+          your personal account.
         </p>
         {this.renderErrorMessage()}
         <form id='login-form' onSubmit={this.handleSubmitJwtAuth}>

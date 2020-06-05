@@ -125,7 +125,7 @@ export class RegistrationPage extends Component {
           {this.matchingPasswords().img}
           </div>
           <div id="form-buttons">
-            <button type='submit' id="submit-button" disabled={!this.matchingPasswords().matching}>Submit</button>
+            <button type='submit' id="submit-button" disabled={!this.matchingPasswords().matching || !this.state.name.value || !this.state.username.value}>Submit</button>
           </div>
         </form>
         <Link to='/journal/weight' className="tablinks">Log in</Link>
