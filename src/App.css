@@ -27,4 +27,14 @@ section > h1 {
   font-family: 'Barlow', sans-serif;
 }
 
+a {
+  color: black
+}
+
+#registration-page, #landing-page {
+  top: 0;
+  bottom: 0;
+  padding-bottom: 30px;
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@900&family=Poppins:wght@500&display=swap');

@@ -47,6 +47,20 @@ export class AppProvider extends Component {
     })
   }
 
+  clearState = () => {
+    this.setState({
+      user: null,
+        entries: {
+          water: [],
+          exercise: [],
+          weight: []
+        },
+        error: null,
+        excercises: []
+    })
+      
+  }
+
   render() {
     const value = {
       entries: this.state.entries,
@@ -56,7 +70,8 @@ export class AppProvider extends Component {
       setUser: this.setUser,
       setError: this.setError,
       addEntry: this.addEntry,
-      clearError: this.clearError
+      clearError: this.clearError,
+      clearState: this.clearState
     };
 
     return (

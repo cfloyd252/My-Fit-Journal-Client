@@ -3,6 +3,7 @@ import UsersApiService from '../../services/users-api-service';
 import AuthApiService from '../../services/auth-api-service';
 import TokenService from '../../services/token-service';
 import AppContext from '../../context/AppContext'
+import { Link } from 'react-router-dom'
 import './RegistrationPage.css'
 
 export class RegistrationPage extends Component {
@@ -105,13 +106,18 @@ export class RegistrationPage extends Component {
         <h1>Registration</h1>
         {this.renderErrorMessage()}
         <form id='registration-form' onSubmit={(e) => this.handleSubmit(e)}>
+          <p>All fields are required</p>
           <label htmlFor='name'>Name:</label>
           <input type='text' name='name' id='reg-name' required onChange={(e) => this.updateValue('name', e.target.value)}/>
           <label htmlFor="username">Username:</label>
           <input type="text" name="username" id="username" required onChange={(e) => this.updateValue('username', e.target.value)} />
           <label htmlFor="password">Password:</label>
           <input type="password" name="password" id="password" required onChange={(e) => this.updateValue('password', e.target.value)}/>
-          <p>Password must contain one upper case, lower case, number and special character</p>
+          <div>
+            <p>Password Requirements:</p>
+            <p>• contain one upper case, lower case, number and special character</p>
+            <p>• be 8-72 charaters in length</p>
+          </div>
           <label htmlFor="repeat-password">Repeat Password:</label>
           <input type="password" name="repeat-password" id="repeat-password" required onChange={(e) => this.updateValue('repeatPassword', e.target.value)}/>
           <div className="validation">
@@ -122,6 +128,7 @@ export class RegistrationPage extends Component {
             <button type='submit' id="submit-button" disabled={!this.matchingPasswords().matching}>Submit</button>
           </div>
         </form>
+        <Link to='/journal/weight' className="tablinks">Log in</Link>
       </section>
     )
   }

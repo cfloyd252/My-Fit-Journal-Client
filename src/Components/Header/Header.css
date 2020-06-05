@@ -16,3 +16,11 @@ header > a{
   text-decoration: none;
   cursor: pointer;
 }
+
+header > button {
+  background-color: black;
+  color: #ffffff;
+  border: none;
+  font-family: 'Barlow', sans-serif;
+  cursor: pointer;
+}

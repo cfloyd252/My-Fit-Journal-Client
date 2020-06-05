@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import './Overview.css'
-import EntryLog from '../../Components/EntryLog/EntryLog'
 import UsersApiService from '../../services/users-api-service'
 import AppContext from '../../context/AppContext'
 
@@ -8,9 +7,11 @@ export class Overview extends Component {
   static contextType = AppContext;
 
   componentDidMount() {
+    if(!this.context.user){
       return UsersApiService.getUser()
-          .then(user => this.context.setUser(user))
-          .catch(error => this.context.setError(error));
+      .then(user => this.context.setUser(user))
+      .catch(error => this.context.setError(error));
+    }  
   }
 
   renderName = () => {
