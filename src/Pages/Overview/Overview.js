@@ -16,6 +16,17 @@ export class Overview extends Component {
 
   renderName = () => {
     if(this.context.user){
+      if(this.context.user.name.charAt(this.context.user.name.length - 1) === 's') {
+        return (
+          <section id="overview">
+            <div id="overview-data">
+            <h2>{this.context.user.name}'</h2>
+            <h2>Journal</h2>
+            </div>
+          </section>
+        )
+      }
+
       return (
         <section id="overview">
           <div id="overview-data">
