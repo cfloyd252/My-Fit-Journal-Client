@@ -29,6 +29,21 @@ const EntriesApiService = {
           : res.json()
       )
   },
+  deleteEntry(logId) {
+    return fetch(`${config.API_ENDPOINT}/entries/${logId}`, {
+      method: 'DELETE',
+      headers: {
+        'content-type': 'application/json',
+        'authorization': `bearer ${TokenService.getAuthToken()}`,
+      },
+      body: {}
+    })
+    .then(res =>
+      (!res.ok)
+        ? res.json().then(e => Promise.reject(e))
+        : res.json()
+    )
+  }
 }
 
 export default EntriesApiService
