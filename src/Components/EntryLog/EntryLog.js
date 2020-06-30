@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import './EntryLog.css'
 import EntriesApiService from '../../services/entries-api-service'
+import AppContext from '../../context/AppContext'
 
 class EntryLog extends Component {
+  static contextType = AppContext;
+
   timer = 0;
   delay = 200;
   prevent = false;
@@ -10,15 +13,19 @@ class EntryLog extends Component {
   onSingleClickHandler = () => {
     this.timer = setTimeout(() => {
       if (!this.prevent) {
-        console.log('single click')
+        alert('single click')
       }
     }, this.delay);
   };
   
-  onDoubleClickHandler = () => {
+  onDoubleClickHandler = (ev, id) => {
     clearTimeout(this.timer);
     this.prevent = true;
-    console.log('double click');
+    
+    EntriesApiService.deleteEntry(id)
+      .then(res => console.log('deleted'))
+      .catch(res => console.log(res))
+
     setTimeout(() => {
       this.prevent = false;
     }, this.delay);
@@ -33,7 +40,7 @@ class EntryLog extends Component {
         <div
           className="log-data"
           onClick={this.onSingleClickHandler}
-          onDoubleClick={this.onDoubleClickHandler}
+          onDoubleClick={(e) => this.onDoubleClickHandler(e, this.props.entryInfo.log_id)}
         >
           <p>{this.props.entryInfo.quanity} {this.props.entryInfo.unit_of_measurement}</p>
         </div>
