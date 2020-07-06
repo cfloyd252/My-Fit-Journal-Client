@@ -35,14 +35,11 @@ const EntriesApiService = {
       headers: {
         'content-type': 'application/json',
         'authorization': `bearer ${TokenService.getAuthToken()}`,
-      },
-      body: {}
+      }
     })
-    .then(res =>
-      (!res.ok)
-        ? res.json().then(e => Promise.reject(e))
-        : res.json()
-    )
+    .then((res) => {
+      return;
+    });
   }
 }
 
