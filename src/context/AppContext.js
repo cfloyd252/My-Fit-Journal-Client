@@ -37,6 +37,15 @@ export class AppProvider extends Component {
     })
   }
 
+  deleteEntry = (logType, logId) => {
+    this.setState({
+      entries: {
+        ...this.state.entries,
+        [`${logType}`]: [...this.state.entries[`${logType}`]].filter(entry => entry.log_id !== logId)
+      }
+    });
+  }
+
   setError = error => {
     this.setState({ error })
   }
@@ -58,7 +67,6 @@ export class AppProvider extends Component {
         error: null,
         excercises: []
     })
-      
   }
 
   render() {
@@ -70,6 +78,7 @@ export class AppProvider extends Component {
       setUser: this.setUser,
       setError: this.setError,
       addEntry: this.addEntry,
+      deleteEntry: this.deleteEntry,
       clearError: this.clearError,
       clearState: this.clearState
     };

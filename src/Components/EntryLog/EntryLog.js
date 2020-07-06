@@ -18,12 +18,12 @@ class EntryLog extends Component {
     }, this.delay);
   };
   
-  onDoubleClickHandler = (ev, id) => {
+  onDoubleClickHandler = (ev, id, logType) => {
     clearTimeout(this.timer);
     this.prevent = true;
     
     EntriesApiService.deleteEntry(id)
-      .then(res => console.log('deleted'))
+      .then(res => this.context.deleteEntry(logType, id))
       .catch(res => console.log(res))
 
     setTimeout(() => {
@@ -40,7 +40,7 @@ class EntryLog extends Component {
         <div
           className="log-data"
           onClick={this.onSingleClickHandler}
-          onDoubleClick={(e) => this.onDoubleClickHandler(e, this.props.entryInfo.log_id)}
+          onDoubleClick={(e) => this.onDoubleClickHandler(e, this.props.entryInfo.log_id, this.props.entryInfo.log_type)}
         >
           <p>{this.props.entryInfo.quanity} {this.props.entryInfo.unit_of_measurement}</p>
         </div>
@@ -48,12 +48,11 @@ class EntryLog extends Component {
     }
     return (
       <div
-        className="log-data"
-        onClick={this.onSingleClickHandler}
-        onDoubleClick={this.onDoubleClickHandler}
-      >
+          className="log-data"
+          onClick={this.onSingleClickHandler}
+          onDoubleClick={(e) => this.onDoubleClickHandler(e, this.props.entryInfo.log_id, this.props.entryInfo.log_type)}
+        >
       <p>{this.props.entryInfo.exercise_name}</p>
-      {/* <p>{this.props.entryInfo.duration}</p> */}
     </div>
     )
   }
