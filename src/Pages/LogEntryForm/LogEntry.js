@@ -79,7 +79,7 @@ export class LogEntry extends Component {
                 <section className='entry_section' onSubmit={this.handleSubmit}>
                   <form className='entry_form' id='water_form'>
                   <label htmlFor='quanity'>Quanity</label>
-                  <input name='quanity' type='number' min='1' required onChange={(e) => this.updateValue('quanity', e.target.value)}/>
+                  <input name='quanity' type='number' min='1' max='250' required onChange={(e) => this.updateValue('quanity', e.target.value)}/>
                   <label htmlFor='unit_of_measurement'>Unit of Measurement</label>
                   <select name='unit_of_measurement' onChange={(e) => this.updateValue('unitOfMeasurement', e.target.value)} >
                     <option value='ml'>ml</option>
@@ -97,7 +97,7 @@ export class LogEntry extends Component {
               <section className='entry_section'>
                 <form className='entry_form' id='weight_form' onSubmit={this.handleSubmit}>
                   <label htmlFor='quanity'>Quanity</label>
-                  <input name='quanity' type='number' min='1' required onChange={(e) => this.updateValue('quanity', e.target.value)} />
+                  <input name='quanity' type='number' min='1' max='999' required onChange={(e) => this.updateValue('quanity', e.target.value)} />
                   <label htmlFor='unit_of_measurement'>Unit of Measurement</label>
                   <select name='unit_of_measurement' onChange={(e) => this.updateValue('unitOfMeasurement', e.target.value)}>
                     <option value='lbs'>lbs</option>
