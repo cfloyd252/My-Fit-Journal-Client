@@ -41,19 +41,27 @@ class LogView extends Component {
 
       const arrayOfDates = Object.keys(datesObj)
     
-      return arrayOfDates.map(dateString => {
-        return (
-          <EntryRow 
-            date={dateString}
-            dataArray={logEntries}
-          />
-        )
-      })
+      return (
+        arrayOfDates.map(dateString => {
+          return (
+            <EntryRow 
+              date={dateString}
+              dataArray={logEntries}
+            />
+          )
+        })
+      )
     }
 
     return(
       <p>Click the button above to start logging entries</p>
     )
+  }
+
+  renderInstructions = () => {
+    if(this.context.entries[`${this.state.logType}`].length > 0) {
+      return (<p>Double click entry to delete</p>)
+    }
   }
 
   render() {
@@ -70,7 +78,7 @@ class LogView extends Component {
         <button id="add-data" onClick={this.handleAddButton}>
           <img src={require('../../images/plus.png')} alt='add entry' />
         </button>
-        <p>Double click entry to delete</p>
+        {this.renderInstructions()}
         {this.renderList()}
       </section>
     )
