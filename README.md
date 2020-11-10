@@ -10,9 +10,7 @@ Username: fit.joe
 Password: pass
 
 ## Summary
-My Fit Journal is a web application that allows the the user to track their fitness progress by logging entries of different types of 
-fitness data. Currently there are logs for water consumtion, user's weight, and their exercises. In future updates, the user will also 
-be able to log meals and create a list of custom exercise names.
+My Fit Journal is a web application that allows the user to track their fitness progress by logging entries of different types of fitness data. Currently, there are logs for water consumption, user's weight, and their exercises. In future updates, the user will also be able to log meals and create a list of custom exercise names.
 
 <div>
     <img src='./src/screenshots/Landing.jpg'>
